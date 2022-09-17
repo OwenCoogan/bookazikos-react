@@ -1,5 +1,6 @@
-import { Formik } from 'formik';
+import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
+
 type LoginFormInputType = {
   email : string;
   password : string;
@@ -11,75 +12,31 @@ export default function LoginForm(){
     password: '',
   }
   return (
-    <Formik 
-       initialValues={values}
-       validate={values => {
-         const errors = {
-            email: '',
-            password: ''
-         };
-         if (!values.email) {
-           errors.email = 'Required';
-         } else if (
-           !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-         ) {
-           errors.email = 'Invalid email address';
-         }
-         return errors;
-       }}
-       onSubmit={(values, { setSubmitting }) => {
-         setTimeout(() => {
-           alert(JSON.stringify(values, null, 2));
-           setSubmitting(false);
-         }, 400);
-       }}
-     >
-      {({
-         values,
-         errors,
-         touched,
-         handleChange,
-         handleBlur,
-         handleSubmit,
-         isSubmitting,
-       }) => (
-        <div className="flex justify-center my-2 mx-4 md:mx-0">
-        <form
-          className="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
-          onSubmit={handleSubmit}
-        >
-          <TextInput
-            label="Email"
-            inputName="email"
-            type="email"
-            placeholder="Enter your email"
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.email}
-          />
-          <TextInput
-            label="Password"
-            inputName="password"
-            type="password"
-            placeholder="Enter your password"
-            value={values.password}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            error={errors.password}
-          />
-          <div className="flex justify-center">
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-              type="submit"
-              disabled={isSubmitting}
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-        </div>
-       )}
-     </Formik>
+    <Form
+      initialValues={values}
+      onSubmit={(values) => {}
+      }
+      validationSchema={{}}
+    >
+      <TextInput
+        label="Email"
+        inputName="email"
+        type="email"
+        placeholder="Enter your email"
+        onChange={(event) => {
+          values.email = event.target.value;
+        }}
+
+      />
+      <TextInput
+        label="Password"
+        inputName="password"
+        type="password"
+        placeholder="Enter your password"
+        onChange={(event) => {
+          values.password = event.target.value;
+        }}
+      />
+    </Form>
 )
 }

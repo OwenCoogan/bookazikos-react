@@ -1,11 +1,13 @@
+import { Field } from 'formik';
+
 type TextInputProps = {
   label: string;
   inputName: string;
   type: string;
   placeholder: string;
-  value: string;
+  value?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
   error?: string;
 }
 
@@ -26,7 +28,7 @@ export default function TextInput({
       >
         {label}
       </label>
-      <input
+      <Field
         className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
         type={type}
         name={inputName}
