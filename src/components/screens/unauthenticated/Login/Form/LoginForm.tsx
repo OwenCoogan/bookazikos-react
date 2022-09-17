@@ -14,8 +14,7 @@ export default function LoginForm(){
   return (
     <Form
       initialValues={values}
-      onSubmit={(values) => {}
-      }
+      submitMethod={ (values: LoginFormInputType) => console.log(values) }
       validationSchema={{}}
     >
       <TextInput

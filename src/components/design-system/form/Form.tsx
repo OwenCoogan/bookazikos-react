@@ -2,7 +2,7 @@ import { Formik , Form as FormikForm , ErrorMessage } from 'formik';
 
 type FormProps = {
   initialValues: any;
-  onSubmit: (values: any) => void;
+  submitMethod: any;
   validationSchema: any;
   children: any;
 }
@@ -10,15 +10,17 @@ type FormProps = {
 export default function Form({
   children,
   initialValues,
+  submitMethod,
 }: FormProps) {
   return (
     <Formik
       initialValues={initialValues}
-      onSubmit={(values) => {
-        console.log(values);
-      }}
+      onSubmit={submitMethod}
+
     >
-      <FormikForm>
+      <FormikForm
+        className="flex flex-col gap-4 max-w-md m-auto"
+      >
         {children}
         <button
           type="submit"
