@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { toast } from 'react-toastify';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
 
@@ -15,10 +17,22 @@ export default function RegisterForm(){
     lastName: '',
     password: '',
   }
+  const submitMethod = (values: RegisterFormInputType) => {
+    axios.post('http://localhost:6950/auth/register', values)
+      .then((response) => {
+        console.log(response);
+        toast.success('You have successfully registered');
+      }
+      )
+      .catch((error) => {
+        toast.error('Something went wrong');
+      }
+      )
+  }
   return (
     <Form
       initialValues={values}
-      submitMethod={ (values: RegisterFormInputType) => console.log(values) }
+      submitMethod={ (values: RegisterFormInputType) => submitMethod(values) }
       validationSchema={{}}
     >
       <TextInput
