@@ -6,15 +6,11 @@ import {
 export type Context = {
   authenticated: boolean,
   setAuthenticated: (value: boolean) => void,
-  isUserProfileCompleted: boolean,
-  setUserProfileCompleted: (value: boolean) => void,
 }
 
 const AuthorizationContext = createContext<Context>({
   authenticated: false,
   setAuthenticated: () => null,
-  isUserProfileCompleted: false,
-  setUserProfileCompleted: () => null,
 });
 
 export function useAuthorizationContext() {

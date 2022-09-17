@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
@@ -17,11 +18,13 @@ export default function RegisterForm(){
     lastName: '',
     password: '',
   }
+  const navigate = useNavigate();
+
   const submitMethod = (values: RegisterFormInputType) => {
     axios.post('http://localhost:6950/auth/register', values)
-      .then((response) => {
-        console.log(response);
-        toast.success('You have successfully registered');
+      .then(() => {
+        toast.success(`You have successfully registered ${values.firstName} ${values.lastName}`, );
+        navigate('/login');
       }
       )
       .catch((error) => {

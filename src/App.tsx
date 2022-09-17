@@ -8,6 +8,7 @@ import AuthenticatedRoutes from './router/AuthenticatedRoutes';
 import UnauthenticatedRoutes from './router/UnauthenticatedRoutes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { store } from './store/store';
 function App() {
   const { authenticated } = useAuthorizationContext();
   return (
