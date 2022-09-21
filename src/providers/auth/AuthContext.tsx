@@ -5,7 +5,7 @@ import {
 
 export type Context = {
   authenticated: boolean,
-  setAuthenticated: (value: boolean) => void,
+  setAuthenticated: (value: boolean) => void
 }
 
 const AuthorizationContext = createContext<Context>({

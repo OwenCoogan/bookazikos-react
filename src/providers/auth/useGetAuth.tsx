@@ -1,7 +1,8 @@
 import React, {
   useMemo,
-  useState,
 } from 'react';
+import { useRecoilState } from 'recoil';
+import { authAtom } from '../../store';
 import AuthorizationContext, { Context } from './AuthContext';
 
 export default function AuthorizationProvider({
@@ -9,12 +10,12 @@ export default function AuthorizationProvider({
 }: {
   children: React.ReactNode,
 }) {
-  const [authenticated, setAuthenticated] = useState<boolean>(false);
+  const [auth,setAuth] = useRecoilState(authAtom);
 
   const values = useMemo<Context>(() => ({
-    authenticated,
-    setAuthenticated,
-  }), [authenticated]);
+    authenticated : auth,
+    setAuthenticated : setAuth,
+  }), [auth, setAuth]);
 
   return (
     <AuthorizationContext.Provider

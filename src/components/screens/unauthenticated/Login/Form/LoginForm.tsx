@@ -1,7 +1,4 @@
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useAuthorizationContext } from '../../../../../providers/auth/AuthContext';
+import { useUserActions } from '../../../../../store/actions/user.actions';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
 
@@ -17,24 +14,13 @@ export default function LoginForm(){
     email: '',
     password: '',
   }
-
-
-  const navigate = useNavigate();
-  const {setAuthenticated } = useAuthorizationContext();
-
-  const submitMethod = (values: LoginFormInputType) => {
-    axios.post('http://localhost:6950/auth/login', values)
-      .then((response) => {
-        toast.success('You have successfully logged in');
-        setAuthenticated(true);
-        navigate('/dashboard');
-      }
-      )
-  }
+  const userActions = useUserActions();
   return (
     <Form
       initialValues={values}
-      submitMethod={ (values: LoginFormInputType) => submitMethod(values) }
+      submitMethod={ (values: LoginFormInputType) => {
+        userActions.login(values);
+      }}
       validationSchema={{}}
     >
       <TextInput

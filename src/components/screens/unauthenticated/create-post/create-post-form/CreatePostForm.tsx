@@ -1,7 +1,8 @@
-import { Editor, EditorState } from 'draft-js';
+import { ContentState, convertToRaw, Editor, EditorState } from 'draft-js';
 import { useState } from 'react';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
+import 'draft-js/dist/Draft.css';
 
 type PostPropType = {
   title: string;
@@ -11,12 +12,13 @@ type PostPropType = {
 }
 
 export default function CreatePostForm() {
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const contentState:ContentState = editorState.getCurrentContent();
   const values : PostPropType  = {
     title: '',
     description: '',
-    content: undefined,
+    content: convertToRaw(contentState),
     };
-  const [editorState, setEditorState] = useState(EditorState);
   return (
     <Form
       submitMethod={(values : PostPropType ) => {
@@ -31,7 +33,9 @@ export default function CreatePostForm() {
         inputName="title"
         placeholder="Title"
         type="text"
-        onChange={() => { }}
+        onChange={(event) => {
+          values.title = event.target.value;
+        }}
 
       />
       <TextInput
@@ -39,14 +43,24 @@ export default function CreatePostForm() {
         inputName="description"
         placeholder="description"
         type="text"
-        onChange={() => { }}
+        onChange={(event) => {
+          values.description = event.target.value;
+        }}
       />
       <div
           className='p-10 m-auto'
         >
+
+      <Editor
+        editorState={editorState}
+        onChange={setEditorState}
+        placeholder="Tell a story..."
+        ariaControls='my-editor'
+      />
       </div>
     </Form>
   );
+
 }
 
 

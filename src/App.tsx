@@ -3,19 +3,21 @@ import './App.css';
 import AuthorizationProvider from './providers/auth/useGetAuth';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/UI/Header';
-import { useAuthorizationContext } from './providers/auth/AuthContext';
 import AuthenticatedRoutes from './router/AuthenticatedRoutes';
 import UnauthenticatedRoutes from './router/UnauthenticatedRoutes';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { store } from './store/store';
+import { useRecoilState } from 'recoil';
+import { authAtom } from './store';
 function App() {
-  const { authenticated } = useAuthorizationContext();
+  const [ auth ] = useRecoilState(authAtom);
+  const routes = auth ? <AuthenticatedRoutes/> : <UnauthenticatedRoutes/>;
+
   return (
     <AuthorizationProvider>
       <BrowserRouter>
       <Header
-        authenticated={authenticated}
+        authenticated={auth}
       />
         <ToastContainer
           position="top-right"
@@ -28,9 +30,7 @@ function App() {
           draggable
           pauseOnHover
         />
-        {
-          authenticated === true ? <AuthenticatedRoutes/> : <UnauthenticatedRoutes/>
-        }
+        {routes}
       </BrowserRouter>,
     </AuthorizationProvider>
   );
