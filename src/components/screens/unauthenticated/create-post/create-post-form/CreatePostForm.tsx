@@ -1,31 +1,42 @@
-import { ContentState, convertToRaw, Editor, EditorState } from 'draft-js';
+import { Editor, EditorState } from 'draft-js';
 import { useState } from 'react';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
 import 'draft-js/dist/Draft.css';
+import axios from 'axios';
+import { userAtom } from '../../../../../store';
+import { useRecoilState } from 'recoil';
 
 type PostPropType = {
   title: string;
-  description: string;
+  userId: string;
   content: any;
 
 }
 
 export default function CreatePostForm() {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
-  const contentState:ContentState = editorState.getCurrentContent();
-  const values : PostPropType  = {
+  const user = useRecoilState(userAtom)[0];
+  const initialValues : PostPropType  = {
     title: '',
-    description: '',
-    content: convertToRaw(contentState),
+    userId: user.userProfile.id,
+    content: '',
     };
   return (
     <Form
       submitMethod={(values : PostPropType ) => {
         console.log(values)
-      }
-      }
-      initialValues={values}
+        axios.post(
+          'http://localhost:6950/posts/create-post',
+          values,
+        )
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }}
+      initialValues={initialValues}
       validationSchema={{}}
     >
       <TextInput
@@ -34,29 +45,24 @@ export default function CreatePostForm() {
         placeholder="Title"
         type="text"
         onChange={(event) => {
-          values.title = event.target.value;
+          initialValues.title = event.target.value;
+          console.log(initialValues)
         }}
-
       />
       <TextInput
-        label="description"
-        inputName="description"
-        placeholder="description"
-        type="text"
+        label="content"
+        inputName="content"
+        placeholder="content"
+        type="content"
         onChange={(event) => {
-          values.description = event.target.value;
+          initialValues.content = event.target.value;
+          console.log(initialValues);
         }}
       />
       <div
           className='p-10 m-auto'
         >
-
-      <Editor
-        editorState={editorState}
-        onChange={setEditorState}
-        placeholder="Tell a story..."
-        ariaControls='my-editor'
-      />
+          {JSON.stringify(initialValues)}
       </div>
     </Form>
   );

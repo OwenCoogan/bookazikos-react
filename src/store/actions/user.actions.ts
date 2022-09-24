@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { userAtom , authAtom } from '../index';
+import { usePostActions } from './post.actions';
 
 type UserLoginType = {
     email: string;
@@ -12,10 +13,11 @@ type UserLoginType = {
 
 function useUserActions () {
     const baseUrl = `http://localhost:6950/auth`;
-    const [user] = useRecoilState(userAtom);
+    const user = useRecoilValue(userAtom);
     const setUser = useSetRecoilState(userAtom);
     const navigate = useNavigate();
     const setAuth = useSetRecoilState(authAtom);
+    const {getPosts} = usePostActions();
 
     return {
         login
@@ -24,15 +26,29 @@ function useUserActions () {
     function login({ email, password }: UserLoginType) {
       axios.post(`${baseUrl}/login`, { email, password })
       .then((response) => {
-        setUser({ ...response.data.user });
+        console.log(response.data.data.token)
+        setUser({
+          authenticated: true,
+          isUserProfileCompleted: false,
+          token: response.data.data.token,
+          userProfile: {
+            id: response.data.data.id,
+            email: response.data.data.email,
+            userProfile: {
+              firstName: '',
+              lastName: '',
+            },
+          },
+        });
         setAuth(true);
+        toast.success("Login successful");
         localStorage.setItem('token', response.data.token);
-        navigate('/dashboard');
+        navigate('/dashboard')
+        getPosts();
       }
       ).catch((error) => {
-        toast.error(error.response.data.message);
+        toast.error(error.message);
       });
-      console.log(user)
     }
 }
 

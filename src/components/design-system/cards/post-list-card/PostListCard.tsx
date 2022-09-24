@@ -1,17 +1,17 @@
+import { Link } from 'react-router-dom';
 import PostListCardItem from './PostListCardItem';
 
-export default function ListCard(
-   posts:[]
+export default function PostListCard(
+   posts:any,
 ) {
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">
                         <div>
-                           <h3 className="text-xl font-bold text-gray-900 mb-2">Latest Transactions</h3>
-                           <span className="text-base font-normal text-gray-500">This is a list of latest transactions</span>
+                           <h3 className="text-xl font-bold text-gray-900 mb-2">Latest Posts</h3>
                         </div>
                         <div className="flex-shrink-0">
-                           <a href="#" className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</a>
+                           <Link to="/posts" className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</Link>
                         </div>
                      </div>
                      <div className="flex flex-col mt-8">
@@ -27,12 +27,15 @@ export default function ListCard(
                                           <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                              Author
                                           </th>
+                                          <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                             Date
+                                          </th>
                                        </tr>
                                     </thead>
                                     <tbody className="bg-white">
                                        {
-                                          posts.map(
-                                             (post) => (
+                                          posts.posts.map(
+                                             (post:any) => (
                                                 <PostListCardItem
                                                    post={post}
                                                 />

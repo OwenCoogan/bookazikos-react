@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 export default function VideoHero() {
   return (
     <section>
@@ -20,9 +22,9 @@ export default function VideoHero() {
 				</h2>
 				<p className="text-sm md:text-base text-gray-50 mb-4">Explore your favourite events and
 					register now to showcase your talent and win exciting prizes.</p>
-				<a href="#"
+				<Link to="#"
 					className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-					Explore Now</a>
+					Explore Now</Link>
 			</div>
 
 		</div>
