@@ -6,6 +6,10 @@ import { userAtom } from '../../../../../store';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useState } from 'react';
+import { Editor } from 'react-draft-wysiwyg';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState } from 'draft-js';
 
 type PostPropType = {
   title: string;
@@ -17,6 +21,8 @@ type PostPropType = {
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
+  const newEditor = EditorState.createEmpty();
+  const [editorState, setEditorState] = useState(newEditor);
   const initialValues : PostPropType  = {
     title: '',
     userId: userState.user.id,
@@ -64,6 +70,13 @@ export default function CreatePostForm() {
           console.log(initialValues);
         }}
       />
+      <Editor
+        editorState={editorState}
+        toolbarClassName="toolbarClassName"
+        wrapperClassName="wrapperClassName"
+        editorClassName="editorClassName"
+        onEditorStateChange={setEditorState}
+      />;
       <div
           className='p-10 m-auto'
         >

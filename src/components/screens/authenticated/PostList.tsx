@@ -23,6 +23,8 @@ export default function PostList() {
                 id={post.id}
                 author={post.author}
                 createdAt={post.createdAt}
+                content={post.content}
+                userId={post.userId}
               />
             )
           )

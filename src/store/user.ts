@@ -19,6 +19,7 @@ const userAtom = atom<UserStateType>({
             occupation: '',
             description: '',
           },
+          posts: [],
         }
     },
 });

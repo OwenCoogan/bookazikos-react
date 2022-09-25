@@ -1,13 +1,6 @@
 import { Link } from 'react-router-dom';
+import { PostTypes } from '../../@types';
 
-type PostTypes ={
-  title?: string;
-  author?: any;
-  userId?: string;
-  id: string;
-  content?: any;
-  createdAt?: string;
-}
 
 export default function PostCard({
   title,
@@ -26,14 +19,14 @@ export default function PostCard({
         <Link to="#">
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{title}</h5>
         </Link>
-        <div className="flex items-center mt-6">
-                    <img className="object-cover object-center w-10 h-10 rounded-full" src={ author.avatar ? author.avatar :`https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
+        <Link to={`/user/${userId}`} className="flex items-center mt-6">
+                    <img className="object-cover object-center w-10 h-10 rounded-full" src={ author?.avatar ? author.avatar :`https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
                     <div className="mx-4">
                         <h1 className="text-sm text-gray-700 dark:text-gray-200">{
-                          author.firstName + " " + author.lastName
+                          author?.firstName + " " + author?.lastName
                         }</h1>
                     </div>
-                </div>
+                </Link>
         <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{content}</p>
         <Link to={`/post/${id}`} className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-yellow-700 rounded-lg hover:bg-yellow-800 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-800">
             Voir post
