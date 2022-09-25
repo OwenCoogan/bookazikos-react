@@ -1,19 +1,24 @@
 import { atom, selector } from 'recoil';
+import { UserStateType, UserType } from '../components/design-system/@types';
 
-const userAtom = atom({
+
+const userAtom = atom<UserStateType>({
     key: 'user',
     default: {
         authenticated: false,
         isUserProfileCompleted: false,
-        token: '',
-        userProfile: {
-          id: '',
+        user: {
           email: '',
+          id: '',
+          token: '',
           userProfile: {
             firstName: '',
             lastName: '',
+            avatar: '',
+            occupation: '',
+            description: '',
           },
-        },
+        }
     },
 });
 

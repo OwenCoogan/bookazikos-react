@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import logo from '../../ressources/image/logo.jpeg';
+import { userAtom } from '../../store';
+import DropdownLink from '../design-system/dropdown/user-dropdown/DropdownLink';
+import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
 
 type HeaderProps = {
   authenticated: boolean,
@@ -8,6 +12,7 @@ type HeaderProps = {
 export default function Header({
   authenticated
 }:HeaderProps){
+  const user = useRecoilState(userAtom)[0].user;
   return (
     <>
       <header>
@@ -33,20 +38,39 @@ export default function Header({
                     <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                       {
                         authenticated === true && (
-                        <li>
-                          <Link to="/create-post">
-                            Create Post
-                          </Link>
-                        </li>
+                        <>
+                          <li>
+                            <Link to="/create-post">
+                              Create Post
+                            </Link>
+                          </li>
+                          <li>
+                          <Link to="/dashboard" className="block py-2 pr-4 pl-3 text-white rounded bg-yellow-700 lg:bg-transparent lg:text-yellow-700 lg:p-0 dark:text-white" aria-current="page">Dashboard</Link>
+                          </li>
+                        </>
                         )
                       }
-                        <li>
-                            <Link to="/dashboard" className="block py-2 pr-4 pl-3 text-white rounded bg-yellow-700 lg:bg-transparent lg:text-yellow-700 lg:p-0 dark:text-white" aria-current="page">Home</Link>
-                        </li>
                     </ul>
                 </div>
             </div>
+
         </nav>
+                {
+                        authenticated === true && (
+                        <>
+                          <UserDropdown
+                            user={
+                              user
+                            }
+                          >
+                            <DropdownLink
+                              text='settings'
+                              link="/user-settings"
+                            />
+                          </UserDropdown>
+                        </>
+                        )
+                      }
     </header>
     </>
   )

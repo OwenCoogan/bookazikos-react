@@ -9,7 +9,7 @@ export default function PostListCardItem(
           {post.post.title}
         </td>
         <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-900">
-            Written by <span className="font-semibold">{post.post.author.name}</span>
+            Written by <span className="font-semibold">{post.post.author.firstName}</span>
         </td>
         <td className="p-4 whitespace-nowrap text-sm font-normal text-gray-500">
           {moment(post.post.createdAt).format("DD/MM/YYYY")}

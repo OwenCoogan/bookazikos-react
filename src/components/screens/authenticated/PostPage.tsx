@@ -10,7 +10,8 @@ export default function PostPage() {
     id: "",
     content: "",
     author : {
-      name: "",
+      firstName: "",
+      lastName: "",
       avatar: "",
     },
     createdAt: ""
@@ -20,6 +21,7 @@ export default function PostPage() {
   useEffect(() => {
     axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
       setPost(response.data.data);
+      console.log(response.data.data);
     });
   }, []);
 
@@ -42,9 +44,10 @@ export default function PostPage() {
                 </Link>
                 <div className="flex items-center mt-6">
                     <img className="object-cover object-center w-10 h-10 rounded-full" src={ post.author.avatar ? post.author.avatar :`https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
-
                     <div className="mx-4">
-                        <h1 className="text-sm text-gray-700 dark:text-gray-200">{post.author.name}</h1>
+                        <h1 className="text-sm text-gray-700 dark:text-gray-200">{
+                          post.author.firstName + " " + post.author.lastName
+                        }</h1>
                     </div>
                 </div>
             </div>

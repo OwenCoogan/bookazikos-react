@@ -10,7 +10,7 @@ export default function Dashboard(
     return (
       <>
         <div
-          className="flex flex-col items-center justify-center w-full h-screen bg-gray-50 p-10"
+          className="flex flex-col items-center justify-center w-full h-full bg-gray-50 p-10"
         >
           <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <DataCard

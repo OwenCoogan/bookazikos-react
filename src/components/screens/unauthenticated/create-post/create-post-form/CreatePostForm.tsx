@@ -1,11 +1,11 @@
-import { Editor, EditorState } from 'draft-js';
-import { useState } from 'react';
 import Form from '../../../../design-system/form/Form';
 import TextInput from '../../../../design-system/TextInput';
 import 'draft-js/dist/Draft.css';
 import axios from 'axios';
 import { userAtom } from '../../../../../store';
 import { useRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 type PostPropType = {
   title: string;
@@ -15,10 +15,11 @@ type PostPropType = {
 }
 
 export default function CreatePostForm() {
-  const user = useRecoilState(userAtom)[0];
+  const userState = useRecoilState(userAtom)[0];
+  const navigate = useNavigate();
   const initialValues : PostPropType  = {
     title: '',
-    userId: user.userProfile.id,
+    userId: userState.user.id,
     content: '',
     };
   return (
@@ -31,9 +32,13 @@ export default function CreatePostForm() {
         )
           .then((res) => {
             console.log(res.data);
+            navigate('/posts');
+            toast.success('Post created successfully');
+
           })
           .catch((err) => {
             console.log(err);
+            toast.error('Something went wrong');
           });
       }}
       initialValues={initialValues}
