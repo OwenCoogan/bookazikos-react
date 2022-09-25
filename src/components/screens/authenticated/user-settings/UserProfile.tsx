@@ -1,9 +1,14 @@
 import { Link } from 'react-router-dom';
-import { UserType } from '../../../design-system/@types';
+import { UserProfileType } from '../../../design-system/@types';
 import SmallDataCard from '../../../design-system/cards/small-data-card/SmallDataCard';
 
-
-export default function UserProfile(user:UserType) {
+export default function UserProfile({
+  firstName,
+  lastName,
+  occupation,
+  description,
+  id,
+}: UserProfileType) {
   return (
     <div className='mt-200'>
   <section className="relative py-16 bg-yellowGray-200 mt-96">

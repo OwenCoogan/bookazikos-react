@@ -15,6 +15,7 @@ const userAtom = atom<UserStateType>({
             firstName: '',
             lastName: '',
             avatar: '',
+            id: '',
             occupation: '',
             description: '',
           },

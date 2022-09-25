@@ -1,8 +1,9 @@
 
 
 export type UserProfileType = {
-  firstName?: string;
-  lastName?: string;
+  firstName: string;
+  lastName: string;
+  id: string;
   avatar?: string;
   createdAt?: string;
   occupation? : string;

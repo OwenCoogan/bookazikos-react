@@ -16,20 +16,22 @@ export default function UserDropdown({
     <div className="align-right">
       <button
         onClick={() => setIsOpen(!isOpen)}
+        className="relative"
       >
         <Avatar
           user={user}
         />
-      </button>
-      <div id="userDropdown" className={`${isOpen && "hidden" } z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600`}>
+        <div id="userDropdown" className={`${isOpen && "hidden" } z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 bottom-0 absolute top-10 -left-1/2`}>
         <div className="py-3 px-4 text-sm text-gray-900 dark:text-white">
           <ButtonLink route="/user-settings" text="Add Profile Info"/>
-          <div className="font-medium truncate">{user?.email}</div>
+          <div className="font-medium truncate mt-4">{user?.email}</div>
         </div>
-        <ul className="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+        <ul className="py-1 px-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
           {children}
         </ul>
       </div>
+      </button>
+
     </div>
   )
 }
