@@ -33,8 +33,8 @@ export default function PostPage() {
   }, []);
 
   return (
-    <section className="bg-white dark:bg-gray-900">
-    <div className="container px-6 py-10 mx-auto">
+    <section className="bg-white dark:bg-gray-900 max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl">
+    <div className="px-6 py-10 mx-auto">
         <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
 
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
@@ -59,14 +59,15 @@ export default function PostPage() {
                 </div>
             </div>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
           <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
               {post.content}
           </p>
         </div>
-        <div className="mt-8">
+        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
           <Editor
             editorState={editorState}
+            toolbarHidden={true}
             toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
