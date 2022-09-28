@@ -19,7 +19,7 @@ export default function Form({
 
     >
       <FormikForm
-        className="flex flex-col gap-4 max-w-md m-auto"
+        className="flex flex-col gap-4 max-w-xl m-auto"
       >
         {children}
         <button

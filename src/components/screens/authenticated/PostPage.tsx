@@ -2,8 +2,15 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import Tag from '../../design-system/tag/Tag';
+import { Editor } from 'react-draft-wysiwyg';
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { convertFromRaw, EditorState } from 'draft-js';
 
 export default function PostPage() {
+
+  const newEditor = EditorState.createEmpty();
+  const [editorState, setEditorState] = useState(newEditor);
+
 
   const [post, setPost] = useState({
     title: "",
@@ -17,10 +24,10 @@ export default function PostPage() {
     createdAt: ""
   });
   const {id} = useParams();
-
   useEffect(() => {
     axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
       setPost(response.data.data);
+      setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
       console.log(response.data.data);
     });
   }, []);
@@ -43,7 +50,7 @@ export default function PostPage() {
                     {post.title}
                 </Link>
                 <div className="flex items-center mt-6">
-                    <img className="object-cover object-center w-10 h-10 rounded-full" src={ post.author.avatar ? post.author.avatar :`https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
+                    <img className="object-cover object-center w-10 h-10 rounded-full" src={ `https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
                     <div className="mx-4">
                         <h1 className="text-sm text-gray-700 dark:text-gray-200">{
                           post.author.firstName + " " + post.author.lastName
@@ -56,6 +63,15 @@ export default function PostPage() {
           <p className="mt-3 text-sm text-gray-500 dark:text-gray-300 md:text-sm">
               {post.content}
           </p>
+        </div>
+        <div className="mt-8">
+          <Editor
+            editorState={editorState}
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            readOnly={true}
+          />
         </div>
     </div>
 </section>

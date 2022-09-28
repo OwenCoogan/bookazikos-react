@@ -34,7 +34,7 @@ function useUserActions () {
         });
         setAuth(true);
         toast.success("Login successful");
-        localStorage.setItem('token', response.data.data.token);
+        localStorage.setItem('token', response.data.token);
         navigate('/dashboard')
         getPosts();
       }

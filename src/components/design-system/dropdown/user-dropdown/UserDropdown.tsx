@@ -26,7 +26,7 @@ export default function UserDropdown({
           <ButtonLink route="/user-settings" text="Add Profile Info"/>
           <div className="font-medium truncate mt-4">{user?.email}</div>
         </div>
-        <ul className="py-1 px-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="avatarButton">
+        <ul className="py-1 px-2 text-sm text-gray-700 dark:text-gray-200 bg-white" aria-labelledby="avatarButton">
           {children}
         </ul>
       </div>
