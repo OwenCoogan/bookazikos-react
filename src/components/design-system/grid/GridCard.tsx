@@ -1,4 +1,6 @@
-type GridCardType = {
+import Tag from '../tag/Tag';
+
+export type GridCardType = {
   title: string;
   description: string;
   image?: string;
@@ -18,7 +20,10 @@ export default function GridCard({
           alt="blog"
         />
         <div className="p-6">
-          <h2 className="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">CATEGORY-1</h2>
+          <Tag
+            tagTitle="Travel"
+            tagColor="yellow"
+          />
           <h1 className="title-font text-lg font-medium text-gray-600 mb-3">{title}</h1>
           <p className="leading-relaxed mb-3">{description}</p>
           <div className="flex items-center flex-wrap ">

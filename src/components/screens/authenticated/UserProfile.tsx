@@ -79,7 +79,7 @@ export default function UserProfile() {
                 author={post.author}
                 createdAt={post.createdAt}
                 content={post.content}
-                userId={post.userId}
+                userId={post.userId} image={''}
               />
             )
           )

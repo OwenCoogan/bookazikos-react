@@ -33,4 +33,5 @@ export type PostTypes ={
   id: string;
   content: any;
   createdAt: string;
+  image?: string;
 }

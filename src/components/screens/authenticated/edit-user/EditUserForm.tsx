@@ -17,12 +17,13 @@ type EditUserPropType = {
 export default function EditUserForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
-  const initialValues : EditUserPropType  = {
-    firstName: '',
-    lastName: '',
-    occupation: '',
+  console.log(userState)
+  const initialValues   = {
+    firstName: userState.user.userProfile.firstName,
+    lastName: userState.user.userProfile.lastName,
+    occupation: userState.user.userProfile.occupation,
     userId: userState.user.id,
-    description: '',
+    description: userState.user.userProfile.description,
     };
   return (
     <Form

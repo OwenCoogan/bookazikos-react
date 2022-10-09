@@ -32,9 +32,10 @@ function useUserActions () {
           isUserProfileCompleted: true,
           user: response.data.data
         });
+        console.log(response.data)
         setAuth(true);
         toast.success("Login successful");
-        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('token', response.data.data.token);
         navigate('/dashboard')
         getPosts();
       }
