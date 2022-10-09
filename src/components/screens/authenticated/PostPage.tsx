@@ -43,7 +43,7 @@ export default function PostPage() {
             <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
                 <Tag
                   tagTitle={post.title}
-                  tagColor="yellow"
+                  tagColor="tertiary"
                 />
 
                 <Link to="#" className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline dark:text-white md:text-3xl">

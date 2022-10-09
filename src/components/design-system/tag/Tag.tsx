@@ -1,6 +1,6 @@
 type TagPropTypes = {
   tagTitle: string;
-  tagColor: string;
+  tagColor: "primary" | "secondary" | "tertiary";
 }
 
 export default function Tag({
@@ -8,7 +8,7 @@ export default function Tag({
   tagColor,
 }: TagPropTypes) {
   return (
-    <span className={`bg-${tagColor}-100 text-${tagColor}-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-${tagColor}-200 dark:text-${tagColor}-800`}>
+    <span className={`bg-${tagColor}-100 text-${tagColor}-800 text-xs inline-block font-semibold mr-2 px-2.5 py-0.5 rounded dark:bg-${tagColor}-200 dark:text-${tagColor}-800`}>
       {tagTitle}
     </span>
   );

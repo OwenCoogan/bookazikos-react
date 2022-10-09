@@ -8,6 +8,7 @@ type TextInputProps = {
   value?: string;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  onKeyDown?: (event: React.KeyboardEvent<HTMLInputElement>) => void;
   error?: string;
 }
 
@@ -18,6 +19,7 @@ export default function TextInput({
   placeholder,
   onChange,
   onBlur,
+  onKeyDown,
   value,
 }: TextInputProps) {
   return (
@@ -34,6 +36,7 @@ export default function TextInput({
         name={inputName}
         placeholder={placeholder}
         onChange={onChange}
+        onKeyDown={onKeyDown}
         onBlur={onBlur}
         value={value}
       />

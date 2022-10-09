@@ -10,14 +10,24 @@ import { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
+import TagsInput from '../../../../design-system/TagsInput';
 
 type PostPropType = {
   title: string;
   userId: string;
   content: any;
   richContent: any;
+  tags : string[];
 
 }
+
+function onKeyDown(e: any) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+  }
+}
+
+
 
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
@@ -30,8 +40,13 @@ export default function CreatePostForm() {
     userId: userState.user.id,
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+    tags: [],
     };
+  function setTags(tags: string[]) {
+    initialValues.tags = tags
+  }
   return (
+    <>
     <Form
       submitMethod={(values : PostPropType ) => {
         values.richContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
@@ -62,6 +77,10 @@ export default function CreatePostForm() {
           initialValues.title = event.target.value;
           console.log(initialValues)
         }}
+        onKeyDown={onKeyDown}
+      />
+      <TagsInput
+        handleSubmit={setTags}
       />
       <TextInput
         label="content"
@@ -72,6 +91,7 @@ export default function CreatePostForm() {
           initialValues.content = event.target.value;
           console.log(initialValues);
         }}
+        onKeyDown={onKeyDown}
       />
       <Editor
         editorState={editorState}
@@ -81,6 +101,7 @@ export default function CreatePostForm() {
         onEditorStateChange={setEditorState}
       />
     </Form>
+    </>
   );
 
 }

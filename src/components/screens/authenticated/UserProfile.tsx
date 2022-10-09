@@ -35,7 +35,7 @@ export default function UserProfile() {
               <div className="py-6 px-3 mt-32 sm:mt-0">
                 <Tag
                   tagTitle="Hello"
-                  tagColor='yellow'
+                  tagColor='tertiary'
                 />
               </div>
             </div>
