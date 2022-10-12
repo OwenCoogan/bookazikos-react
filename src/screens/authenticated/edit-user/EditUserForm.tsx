@@ -32,6 +32,7 @@ export default function EditUserForm() {
           values,
         )
           .then((res) => {
+            console.log(res.data);
             navigate('/dashboard');
 
           })
