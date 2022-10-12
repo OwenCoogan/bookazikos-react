@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { postListAtom } from '../post';
+import { draftListAtom, postListAtom } from '../post';
 
 
 function usePostActions () {
     const baseUrl = `http://localhost:6950/posts`;
     const [postList,setPostList] = useRecoilState(postListAtom);
+    const [draftList,setDraftList] = useRecoilState(draftListAtom);
 
 
     return {
@@ -26,9 +27,9 @@ function usePostActions () {
       });
     }
     function getDrafts() {
-      axios.get(`${baseUrl}/get-posts`, { params: { status: 'draft' } })
+      axios.get(`${baseUrl}/get-drafts`)
       .then((response) => {
-        setPostList(response.data.data);
+        setDraftList(response.data.data);
       }
       ).catch((error) => {
         toast.error(error.message);

@@ -16,7 +16,7 @@ function useUserActions () {
     const setUser = useSetRecoilState(userAtom);
     const navigate = useNavigate();
     const setAuth = useSetRecoilState(authAtom);
-    const {getPosts} = usePostActions();
+    const {getPosts,getDrafts} = usePostActions();
 
     return {
         login,
@@ -37,6 +37,7 @@ function useUserActions () {
           localStorage.setItem('token', response.data.data.token);
           navigate('/dashboard')
           getPosts();
+          getDrafts();
         }
         else {
           toast.error("Login failed");

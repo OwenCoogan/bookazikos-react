@@ -6,7 +6,7 @@ import PostPage from '../screens/authenticated/PostPage';
 import UserProfile from '../screens/authenticated/UserProfile';
 import UserSettings from '../screens/authenticated/user-settings/UserSettings';
 import NotFoundPage from '../screens/NotFoundPage';
-import CreatePost from '../screens/unauthenticated/create-post/CreatePost';
+import CreatePost from '../screens/authenticated/create-post/CreatePost';
 import Home from '../screens/unauthenticated/Home';
 
 export default function AuthenticatedRoutes() {

@@ -15,7 +15,13 @@ const postListAtom = atom({
     default: []
 });
 
+const draftListAtom = atom({
+    key: 'draftList',
+    default: []
+});
+
 export {
     postAtom,
-    postListAtom
+    postListAtom,
+    draftListAtom
 };
