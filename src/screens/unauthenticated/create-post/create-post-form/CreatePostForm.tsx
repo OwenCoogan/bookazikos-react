@@ -55,13 +55,11 @@ export default function CreatePostForm() {
           values,
         )
           .then((res) => {
-            console.log(res.data);
             navigate('/posts');
             toast.success('Post created successfully');
 
           })
           .catch((err) => {
-            console.log(err);
             toast.error('Something went wrong');
           });
       }}
@@ -75,7 +73,6 @@ export default function CreatePostForm() {
         type="text"
         onChange={(event) => {
           initialValues.title = event.target.value;
-          console.log(initialValues)
         }}
         onKeyDown={onKeyDown}
       />
@@ -89,7 +86,6 @@ export default function CreatePostForm() {
         type="content"
         onChange={(event) => {
           initialValues.content = event.target.value;
-          console.log(initialValues);
         }}
         onKeyDown={onKeyDown}
       />

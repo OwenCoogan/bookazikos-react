@@ -13,11 +13,12 @@ export default function PostPage() {
   const [editorState, setEditorState] = useState(newEditor);
 
   function publishProgram(){
+    console.log("Publishing program")
     axios.post('http://localhost:6950/posts/publish-post', {
       id: post.id,
     })
       .then((res) => {
-        console.log(res.data.data);
+        console.log(res.data);
       })
   }
 
@@ -39,7 +40,6 @@ export default function PostPage() {
     axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
       setPost(response.data.data);
       setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
-      console.log(response.data.data);
     });
   }, []);
 
@@ -52,19 +52,16 @@ export default function PostPage() {
 
             <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
                 <Tag
-                  tagTitle={post.title}
-                  tagColor="tertiary"
-                />
-                <Tag
-                  tagTitle={post.publicationStatus}
+                  tagTitle={post.publicationStatus.toUpperCase()}
                   tagColor={
                     post.publicationStatus === "published" ? "success" : "warning"
                   }
                 />
-                <Button
-                  text="Publish"
+                <button
                   onClick={publishProgram}
-                />
+                >
+                  Publish
+                </button>
                 <Link to="#" className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline dark:text-white md:text-3xl">
                     {post.title}
                 </Link>

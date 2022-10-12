@@ -13,7 +13,6 @@ export default function UserSettings() {
   useEffect(() => {
     axios.get(`http://localhost:6950/auth/get-user/${userId}`)
     .then((response) => {
-      console.log(response.data.data)
       setUserProfile(response.data.data)
     })
   }, [])

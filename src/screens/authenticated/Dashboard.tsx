@@ -1,5 +1,3 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { postListAtom } from '../../store/post';
 import DataCard from '../../components/design-system/cards/data-card/DataCard';
@@ -17,14 +15,13 @@ export default function Dashboard(){
               title="Total Posts"
               displayValue={posts.length}
               calculatedValue={100}
-
             />
             <DataCard
-              title="Total Posts"
+              title="Total Users"
               displayValue="100"
             />
             <DataCard
-              title="Total Posts"
+              title="Total Comments"
               displayValue="100"
             />
           </div>

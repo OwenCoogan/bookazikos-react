@@ -12,7 +12,6 @@ export default function Home(
   useEffect(() => {
     axios.get("http://localhost:6950/posts/get-posts").then((response) => {
       setPosts(response.data.data);
-      console.log(posts)
     });
   }, []);
   return (

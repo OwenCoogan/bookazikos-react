@@ -17,7 +17,6 @@ type EditUserPropType = {
 export default function EditUserForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
-  console.log(userState)
   const initialValues   = {
     firstName: userState.user.userProfile.firstName,
     lastName: userState.user.userProfile.lastName,
@@ -28,19 +27,16 @@ export default function EditUserForm() {
   return (
     <Form
       submitMethod={(values : EditUserPropType ) => {
-        console.log(values)
         axios.post(
           `http://localhost:6950/auth/edit-user/${userState.user.id}`,
           values,
         )
           .then((res) => {
-            console.log(res.data);
             navigate('/dashboard');
 
           })
           .catch((err) => {
-            console.log(err);
-            toast.error('Something went wrong');
+            toast.error('Something went wrong = ' + err);
           });
       }}
       initialValues={initialValues}
@@ -53,7 +49,6 @@ export default function EditUserForm() {
         type="text"
         onChange={(event) => {
           initialValues.firstName = event.target.value;
-          console.log(initialValues)
         }}
       />
       <TextInput
@@ -63,7 +58,6 @@ export default function EditUserForm() {
         type="text"
         onChange={(event) => {
           initialValues.lastName = event.target.value;
-          console.log(initialValues)
         }}
       />
       <TextInput
@@ -73,7 +67,6 @@ export default function EditUserForm() {
         type="text"
         onChange={(event) => {
           initialValues.occupation = event.target.value;
-          console.log(initialValues)
         }}
       />
       <TextInput
@@ -83,7 +76,6 @@ export default function EditUserForm() {
         type="text"
         onChange={(event) => {
           initialValues.description = event.target.value;
-          console.log(initialValues)
         }}
       />
     </Form>
