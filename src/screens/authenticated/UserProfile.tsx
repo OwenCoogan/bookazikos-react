@@ -14,7 +14,7 @@ export default function UserProfile() {
   useEffect(() => {
     axios.get(`http://localhost:6950/auth/get-user/${id}`)
     .then((response) => {
-      setUserProfile(response.data.data)
+      setUserProfile(response.data.data.data)
     })
   }, [])
 

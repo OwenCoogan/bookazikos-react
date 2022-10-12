@@ -8,6 +8,7 @@ import UserSettings from '../screens/authenticated/user-settings/UserSettings';
 import NotFoundPage from '../screens/NotFoundPage';
 import CreatePost from '../screens/authenticated/create-post/CreatePost';
 import Home from '../screens/unauthenticated/Home';
+import DraftsList from '../screens/authenticated/DraftList';
 
 export default function AuthenticatedRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function AuthenticatedRoutes() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/create-post" element={<CreatePost />} />
       <Route path="/posts" element={<PostList />} />
+      <Route path="/drafts" element={<DraftsList />} />
       <Route path="*" element={<NotFoundPage/>} />
       <Route path="post/:id" element={<PostPage />} />
       <Route path="/user-settings" element={<UserSettings/>} />
