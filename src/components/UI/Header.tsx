@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { Link, useNavigate } from 'react-router-dom';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import logo from '../../ressources/image/logo.jpeg';
-import { userAtom } from '../../store';
+import { authAtom, userAtom } from '../../store';
+import Button from '../design-system/buttons/Button';
 import DropdownLink from '../design-system/dropdown/user-dropdown/DropdownLink';
 import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
 
@@ -9,10 +10,36 @@ type HeaderProps = {
   authenticated: boolean,
 }
 
+
+
 export default function Header({
   authenticated
 }:HeaderProps){
+  const navigate = useNavigate();
   const user = useRecoilState(userAtom)[0].user;
+  const setUser = useSetRecoilState(userAtom);
+  const [ auth,setAuth ] = useRecoilState(authAtom);
+  function logout(){
+    localStorage.removeItem('token');
+    navigate('/');
+    setAuth(false);
+    setUser({
+      authenticated: false,
+      isUserProfileCompleted: false,
+      user: {
+        id: '',
+        email: '',
+        posts: [],
+        userProfile: {
+          id: '',
+          firstName: '',
+          lastName: '',
+          occupation: '',
+          description: '',
+        }
+      }
+    })
+  }
   return (
     <>
       <header>
@@ -42,6 +69,12 @@ export default function Header({
                         text='settings'
                         link="/user-settings"
                       />
+                      <button
+                        className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        onClick={logout}
+                      >
+                        Logout
+                      </button>
                     </UserDropdown>
                   </div>
                   )

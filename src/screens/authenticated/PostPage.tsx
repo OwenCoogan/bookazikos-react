@@ -6,6 +6,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertFromRaw, EditorState } from 'draft-js';
 import Button from '../../components/design-system/buttons/Button';
+import moment from 'moment';
 
 export default function PostPage() {
 
@@ -57,14 +58,21 @@ export default function PostPage() {
                     post.publicationStatus === "published" ? "success" : "warning"
                   }
                 />
-                <button
+                {
+                  post.publicationStatus === "draft" &&
+                  <button
                   onClick={publishProgram}
-                >
-                  Publish
-                </button>
-                <Link to="#" className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline dark:text-white md:text-3xl">
+                  >
+                    Publish
+                  </button>
+                }
+                <Tag
+                  tagTitle={moment(post.createdAt).calendar()}
+                  tagColor="primary"
+                />
+                <h2 className="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
                     {post.title}
-                </Link>
+                </h2>
                 <div className="flex items-center mt-6">
                     <img className="object-cover object-center w-10 h-10 rounded-full" src={ `https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80`} alt=""/>
                     <div className="mx-4">
