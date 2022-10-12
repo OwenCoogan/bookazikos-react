@@ -21,8 +21,8 @@ export default function UserDropdown({
         <Avatar
           user={user}
         />
-        <div id="userDropdown" className={`${isOpen ===false  && "hidden" } z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 bottom-0 absolute top-10 -right-1/2`}>
-        <div className="py-3 px-4 text-sm text-gray-900 dark:text-white mt-6">
+        <div id="userDropdown" className={`${isOpen ===false  && "hidden" } z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600 bottom-0 absolute top-9 -right-1/2`}>
+        <div className="py-3 px-4 text-sm text-gray-900 dark:text-white mt-6 bg-white">
           <ButtonLink route="/user-settings" text="Add Profile Info"/>
           <div className="font-medium truncate mt-6">{user?.email}</div>
         </div>

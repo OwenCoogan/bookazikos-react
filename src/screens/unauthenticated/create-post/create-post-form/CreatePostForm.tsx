@@ -66,36 +66,46 @@ export default function CreatePostForm() {
       initialValues={initialValues}
       validationSchema={{}}
     >
-      <TextInput
-        label="Title"
-        inputName="title"
-        placeholder="Title"
-        type="text"
-        onChange={(event) => {
-          initialValues.title = event.target.value;
-        }}
-        onKeyDown={onKeyDown}
-      />
-      <TagsInput
-        handleSubmit={setTags}
-      />
-      <TextInput
-        label="content"
-        inputName="content"
-        placeholder="content"
-        type="content"
-        onChange={(event) => {
-          initialValues.content = event.target.value;
-        }}
-        onKeyDown={onKeyDown}
-      />
-      <Editor
-        editorState={editorState}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
-        onEditorStateChange={setEditorState}
-      />
+      <div className='flex flex-col lg:flex-row'>
+        <div
+          className='flex flex-col w-full lg:w-1/3'
+        >
+          <TextInput
+            label="Title"
+            inputName="title"
+            placeholder="Title"
+            type="text"
+            onChange={(event) => {
+              initialValues.title = event.target.value;
+            }}
+            onKeyDown={onKeyDown}
+          />
+          <TagsInput
+            handleSubmit={setTags}
+          />
+          <TextInput
+            label="content"
+            inputName="content"
+            placeholder="content"
+            type="content"
+            onChange={(event) => {
+              initialValues.content = event.target.value;
+            }}
+            onKeyDown={onKeyDown}
+          />
+        </div>
+        <div
+          className='lg:m-auto justify-center items-center lg:w-1/2 h-96'
+        >
+          <Editor
+            editorState={editorState}
+            toolbarClassName="toolbarClassName"
+            wrapperClassName="wrapperClassName"
+            editorClassName="editorClassName"
+            onEditorStateChange={setEditorState}
+          />
+        </div>
+      </div>
     </Form>
     </>
   );

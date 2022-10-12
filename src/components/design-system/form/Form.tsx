@@ -5,21 +5,22 @@ type FormProps = {
   submitMethod: any;
   validationSchema: any;
   children: any;
+  style?: string;
 }
 
 export default function Form({
   children,
   initialValues,
   submitMethod,
+  style
 }: FormProps) {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={submitMethod}
-
     >
       <FormikForm
-        className="flex flex-col gap-4 max-w-xl m-auto"
+        className="w-full m-auto"
       >
         {children}
         <button

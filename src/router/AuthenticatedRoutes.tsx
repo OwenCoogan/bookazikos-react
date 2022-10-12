@@ -7,6 +7,7 @@ import UserProfile from '../screens/authenticated/UserProfile';
 import UserSettings from '../screens/authenticated/user-settings/UserSettings';
 import NotFoundPage from '../screens/NotFoundPage';
 import CreatePost from '../screens/unauthenticated/create-post/CreatePost';
+import Home from '../screens/unauthenticated/Home';
 
 export default function AuthenticatedRoutes() {
   return (
@@ -20,6 +21,7 @@ export default function AuthenticatedRoutes() {
       <Route path="/user-settings" element={<UserSettings/>} />
       <Route path="/edit-user" element={<EditUser />} />
       <Route path="user/:id" element={<UserProfile/>} />
+      <Route path="/" element={<Home />} />
     </Routes>
   )
 }
