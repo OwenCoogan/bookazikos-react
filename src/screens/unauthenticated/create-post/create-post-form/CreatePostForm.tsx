@@ -1,8 +1,8 @@
-import Form from '../../../../design-system/form/Form';
-import TextInput from '../../../../design-system/TextInput';
+import Form from '../../../../components/design-system/form/Form';
+import TextInput from '../../../../components/design-system/TextInput';
 import 'draft-js/dist/Draft.css';
 import axios from 'axios';
-import { userAtom } from '../../../../../store';
+import { userAtom } from '../../../../store';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -10,7 +10,7 @@ import { useState } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
-import TagsInput from '../../../../design-system/TagsInput';
+import TagsInput from '../../../../components/design-system/TagsInput';
 
 type PostPropType = {
   title: string;

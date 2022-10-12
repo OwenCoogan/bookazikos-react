@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PostCard from '../../design-system/cards/post-card/PostCard';
-import Grid from '../../design-system/grid/Grid';
-import HeaderHero from '../../UI/HeaderHero';
-import VideoHero from '../../UI/VideoHero';
+import PostCard from '../../components/design-system/cards/post-card/PostCard';
+import Grid from '../../components/design-system/grid/Grid';
+import HeaderHero from '../../components/UI/HeaderHero';
+import VideoHero from '../../components/UI/VideoHero';
 
 export default function Home(
 

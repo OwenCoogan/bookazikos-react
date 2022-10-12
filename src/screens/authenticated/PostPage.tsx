@@ -1,21 +1,32 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import Tag from '../../design-system/tag/Tag';
+import Tag from '../../components/design-system/tag/Tag';
 import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertFromRaw, EditorState } from 'draft-js';
+import Button from '../../components/design-system/buttons/Button';
 
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
   const [editorState, setEditorState] = useState(newEditor);
 
+  function publishProgram(){
+    axios.post('http://localhost:6950/posts/publish-post', {
+      id: post.id,
+    })
+      .then((res) => {
+        console.log(res.data.data);
+      })
+  }
+
 
   const [post, setPost] = useState({
     title: "",
     id: "",
     content: "",
+    publicationStatus: "",
     author : {
       firstName: "",
       lastName: "",
@@ -36,7 +47,6 @@ export default function PostPage() {
     <section className="bg-white dark:bg-gray-900 max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl">
     <div className="px-6 py-10 mx-auto">
         <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
-
         <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
             <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"alt=""/>
 
@@ -45,7 +55,16 @@ export default function PostPage() {
                   tagTitle={post.title}
                   tagColor="tertiary"
                 />
-
+                <Tag
+                  tagTitle={post.publicationStatus}
+                  tagColor={
+                    post.publicationStatus === "published" ? "success" : "warning"
+                  }
+                />
+                <Button
+                  text="Publish"
+                  onClick={publishProgram}
+                />
                 <Link to="#" className="block mt-4 text-2xl font-semibold text-gray-800 hover:underline dark:text-white md:text-3xl">
                     {post.title}
                 </Link>

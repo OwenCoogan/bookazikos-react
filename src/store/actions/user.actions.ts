@@ -26,18 +26,21 @@ function useUserActions () {
     function login({ email, password }: UserLoginType) {
       axios.post(`${baseUrl}/login`, { email, password })
       .then((response) => {
-        console.log(response.data.data)
-        setUser({
-          authenticated: true,
-          isUserProfileCompleted: true,
-          user: response.data.data
-        });
-        console.log(response.data)
-        setAuth(true);
-        toast.success("Login successful");
-        localStorage.setItem('token', response.data.data.token);
-        navigate('/dashboard')
-        getPosts();
+        if(response.data.data) {
+          setUser({
+            authenticated: true,
+            isUserProfileCompleted: true,
+            user: response.data.data
+          });
+          setAuth(true);
+          toast.success("Login successful");
+          localStorage.setItem('token', response.data.data.token);
+          navigate('/dashboard')
+          getPosts();
+        }
+        else {
+          toast.error("Login failed");
+        }
       }
       ).catch((error) => {
         toast.error(error.message);

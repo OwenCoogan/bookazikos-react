@@ -1,10 +1,10 @@
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { userAtom } from '../../../../store';
+import { userAtom } from '../../../store';
 import axios from 'axios';
-import Form from '../../../design-system/form/Form';
-import TextInput from '../../../design-system/TextInput';
+import Form from '../../../components/design-system/form/Form';
+import TextInput from '../../../components/design-system/TextInput';
 
 type EditUserPropType = {
   firstName?: string;

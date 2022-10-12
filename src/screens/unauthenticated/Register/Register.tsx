@@ -1,4 +1,4 @@
-import FormHeader from '../../../design-system/FormHeader';
+import FormHeader from '../../../components/design-system/FormHeader';
 import RegisterForm from './Form/RegisterForm';
 
 export default function Register(

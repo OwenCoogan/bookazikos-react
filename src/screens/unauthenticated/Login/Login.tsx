@@ -1,4 +1,4 @@
-import FormHeader from '../../../design-system/FormHeader';
+import FormHeader from '../../../components/design-system/FormHeader';
 import LoginForm from './Form/LoginForm';
 
 

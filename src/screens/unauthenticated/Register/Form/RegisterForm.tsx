@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Form from '../../../../design-system/form/Form';
-import TextInput from '../../../../design-system/TextInput';
+import Form from '../../../../components/design-system/form/Form';
+import TextInput from '../../../../components/design-system/TextInput';
 
 type RegisterFormInputType = {
   email : string;

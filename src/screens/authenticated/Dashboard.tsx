@@ -1,11 +1,11 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { postListAtom } from '../../../store/post';
-import DataCard from '../../design-system/cards/data-card/DataCard';
-import PostListCard from '../../design-system/cards/post-list-card/PostListCard';
+import { postListAtom } from '../../store/post';
+import DataCard from '../../components/design-system/cards/data-card/DataCard';
+import PostListCard from '../../components/design-system/cards/post-list-card/PostListCard';
 
-export default function Dashboard(
-
-  ){
+export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
     return (
       <>

@@ -1,6 +1,6 @@
-import { useUserActions } from '../../../../../store/actions/user.actions';
-import Form from '../../../../design-system/form/Form';
-import TextInput from '../../../../design-system/TextInput';
+import { useUserActions } from '../../../../store/actions/user.actions';
+import Form from '../../../../components/design-system/form/Form';
+import TextInput from '../../../../components/design-system/TextInput';
 
 type LoginFormInputType = {
   email : string;

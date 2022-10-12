@@ -1,11 +1,11 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { PostTypes, UserType } from '../../design-system/@types'
-import PostCard from '../../design-system/cards/post-card/PostCard'
-import SmallDataCard from '../../design-system/cards/small-data-card/SmallDataCard'
-import Grid from '../../design-system/grid/Grid'
-import Tag from '../../design-system/tag/Tag'
+import { PostTypes, UserType } from '../../components/design-system/@types'
+import PostCard from '../../components/design-system/cards/post-card/PostCard'
+import SmallDataCard from '../../components/design-system/cards/small-data-card/SmallDataCard'
+import Grid from '../../components/design-system/grid/Grid'
+import Tag from '../../components/design-system/tag/Tag'
 
 export default function UserProfile() {
   const { id } = useParams();

@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import Dashboard from '../components/screens/authenticated/Dashboard';
-import EditUser from '../components/screens/authenticated/edit-user/EditUser';
-import PostList from '../components/screens/authenticated/PostList';
-import PostPage from '../components/screens/authenticated/PostPage';
-import UserProfile from '../components/screens/authenticated/UserProfile';
-import UserSettings from '../components/screens/authenticated/user-settings/UserSettings';
-import NotFoundPage from '../components/screens/NotFoundPage';
-import CreatePost from '../components/screens/unauthenticated/create-post/CreatePost';
+import Dashboard from '../screens/authenticated/Dashboard';
+import EditUser from '../screens/authenticated/edit-user/EditUser';
+import PostList from '../screens/authenticated/PostList';
+import PostPage from '../screens/authenticated/PostPage';
+import UserProfile from '../screens/authenticated/UserProfile';
+import UserSettings from '../screens/authenticated/user-settings/UserSettings';
+import NotFoundPage from '../screens/NotFoundPage';
+import CreatePost from '../screens/unauthenticated/create-post/CreatePost';
 
 export default function AuthenticatedRoutes() {
   return (

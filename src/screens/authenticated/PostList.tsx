@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PostCard from '../../design-system/cards/post-card/PostCard';
+import PostCard from '../../components/design-system/cards/post-card/PostCard';
 
 export default function PostList() {
 

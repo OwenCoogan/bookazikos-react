@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
-import PostList from '../components/screens/authenticated/PostList';
-import PostPage from '../components/screens/authenticated/PostPage';
-import NotFoundPage from '../components/screens/NotFoundPage';
-import Home from '../components/screens/unauthenticated/Home';
-import Login from '../components/screens/unauthenticated/Login/Login';
-import Register from '../components/screens/unauthenticated/Register/Register';
+import PostList from '../screens/authenticated/PostList';
+import PostPage from '../screens/authenticated/PostPage';
+import NotFoundPage from '../screens/NotFoundPage';
+import Home from '../screens/unauthenticated/Home';
+import Login from '../screens/unauthenticated/Login/Login';
+import Register from '../screens/unauthenticated/Register/Register';
 
 export default function UnauthenticatedRoutes() {
   return (

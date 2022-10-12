@@ -2,9 +2,9 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
-import {  userAtom } from '../../../../store'
-import { UserType } from '../../../design-system/@types'
-import SmallDataCard from '../../../design-system/cards/small-data-card/SmallDataCard'
+import {  userAtom } from '../../../store'
+import { UserType } from '../../../components/design-system/@types'
+import SmallDataCard from '../../../components/design-system/cards/small-data-card/SmallDataCard'
 
 export default function UserSettings() {
   const userId = useRecoilState(userAtom)[0].user.id
