@@ -3,12 +3,14 @@ import { draftListAtom, postListAtom } from '../../store/post';
 import DataCard from '../../components/design-system/cards/data-card/DataCard';
 import PostListCard from '../../components/design-system/cards/post-list-card/PostListCard';
 import { useEffect } from 'react';
+import { usePostActions } from '../../store/actions/post.actions';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
     const [drafts] = useRecoilValue(draftListAtom);
+    const {getDrafts} = usePostActions();
     useEffect(() => {
-    }, [posts, drafts]);
+      getDrafts()}, [posts, drafts]);
 
     return (
       <>
@@ -34,12 +36,6 @@ export default function Dashboard(){
             <PostListCard
               title = "Latest Posts"
               posts={posts ? posts : []}
-            />
-          </div>
-          <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-            <PostListCard
-              title = "Drafts"
-              posts={drafts ? drafts : []}
             />
           </div>
         </div>
