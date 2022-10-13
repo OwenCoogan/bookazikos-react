@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import PostList from '../screens/authenticated/PostList';
-import PostPage from '../screens/authenticated/PostPage';
+import PostPage from '../screens/unauthenticated/PostPage';
 import NotFoundPage from '../screens/NotFoundPage';
 import About from '../screens/unauthenticated/About/About';
 import ContactFormScreen from '../screens/unauthenticated/ContactFormScreen';

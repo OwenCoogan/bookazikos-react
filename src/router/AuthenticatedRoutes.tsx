@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from '../screens/authenticated/Dashboard';
 import EditUser from '../screens/authenticated/edit-user/EditUser';
 import PostList from '../screens/authenticated/PostList';
-import PostPage from '../screens/authenticated/PostPage';
+import PostPage from '../screens/unauthenticated/PostPage';
 import UserProfile from '../screens/authenticated/UserProfile';
 import UserSettings from '../screens/authenticated/user-settings/UserSettings';
 import NotFoundPage from '../screens/NotFoundPage';

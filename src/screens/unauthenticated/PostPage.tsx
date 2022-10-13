@@ -8,6 +8,7 @@ import { convertFromRaw, EditorState } from 'draft-js';
 import moment from 'moment';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
+import CommentSection from '../../components/UI/comment-section/CommentSection';
 
 export default function PostPage() {
 
@@ -101,6 +102,11 @@ export default function PostPage() {
             readOnly={true}
           />
         </div>
+        <CommentSection
+          postId={post.id}
+          comments={[]}
+        />
+
     </div>
 </section>
   )
