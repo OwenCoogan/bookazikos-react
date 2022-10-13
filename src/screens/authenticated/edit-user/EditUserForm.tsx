@@ -42,7 +42,7 @@ export default function EditUserForm() {
           values,
         )
           .then((res) => {
-            console.log(res.data);
+            toast.success("User updated successfully");
             navigate('/dashboard');
 
           })

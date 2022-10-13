@@ -4,7 +4,6 @@ import PostListCardItem from './PostListCardItem';
 export default function PostListCard(
    posts:any,
 ) {
-   console.log(posts)
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">

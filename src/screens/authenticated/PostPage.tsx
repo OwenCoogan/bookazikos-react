@@ -1,25 +1,27 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Tag from '../../components/design-system/tag/Tag';
 import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertFromRaw, EditorState } from 'draft-js';
 import moment from 'moment';
+import { toast } from 'react-toastify';
 
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
   const [editorState, setEditorState] = useState(newEditor);
+  const navigate = useNavigate();
 
   function publishProgram(){
-    console.log("Publishing program")
     axios.post('http://localhost:6950/posts/publish-post', {
       id: post.id,
     })
-      .then((res) => {
-        console.log(res.data);
-      })
+    .then((response) => {
+      toast.success("Post published successfully");
+      navigate('/dashboard');
+    })
   }
 
 

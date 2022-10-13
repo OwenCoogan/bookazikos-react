@@ -2,7 +2,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import logo from '../../ressources/image/logo.jpeg';
 import { authAtom, userAtom } from '../../store';
-import Button from '../design-system/buttons/Button';
 import DropdownLink from '../design-system/dropdown/user-dropdown/DropdownLink';
 import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
 
@@ -72,6 +71,10 @@ export default function Header({
                       <DropdownLink
                         text='drafts'
                         link="/drafts"
+                      />
+                      <DropdownLink
+                        text='About'
+                        link="/about"
                       />
                       <button
                         className="w-full text-left block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"

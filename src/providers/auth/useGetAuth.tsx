@@ -30,7 +30,6 @@ export default function AuthorizationProvider({
         token,
       })
         .then((response) => {
-          console.log(response.data);
           setAuth(true);
           getPosts();
           setUser({

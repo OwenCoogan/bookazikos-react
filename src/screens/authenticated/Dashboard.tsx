@@ -8,7 +8,6 @@ export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
     const [drafts] = useRecoilValue(draftListAtom);
     useEffect(() => {
-        console.log(drafts);
     }, [posts, drafts]);
 
     return (

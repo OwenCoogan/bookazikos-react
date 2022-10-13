@@ -22,7 +22,6 @@ function App() {
       })
       .then((response) => {
         setAuth(true);
-        console.log(response)
       })
     }
   })

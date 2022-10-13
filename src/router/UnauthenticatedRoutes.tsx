@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import PostList from '../screens/authenticated/PostList';
 import PostPage from '../screens/authenticated/PostPage';
 import NotFoundPage from '../screens/NotFoundPage';
+import About from '../screens/unauthenticated/About/About';
 import Home from '../screens/unauthenticated/Home';
 import Login from '../screens/unauthenticated/Login/Login';
 import Register from '../screens/unauthenticated/Register/Register';
@@ -16,6 +17,7 @@ export default function UnauthenticatedRoutes() {
       <Route path="*" element={<NotFoundPage/>} />
       <Route path="post/:id" element={<PostPage />} />
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About/>} />
     </Routes>
   )
 }
