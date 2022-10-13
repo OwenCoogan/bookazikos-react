@@ -19,6 +19,7 @@ function TagsInput({
         e.preventDefault();
         setTags([...tags, e.target.value])
         handleSubmit(tags)
+        e.target.value = ''
       }
     }
 

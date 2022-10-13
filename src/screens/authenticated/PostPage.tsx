@@ -7,6 +7,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertFromRaw, EditorState } from 'draft-js';
 import moment from 'moment';
 import { toast } from 'react-toastify';
+import Button from '../../components/design-system/buttons/Button';
 
 export default function PostPage() {
 
@@ -59,18 +60,19 @@ export default function PostPage() {
                     post.publicationStatus === "published" ? "success" : "warning"
                   }
                 />
-                {
-                  post.publicationStatus === "draft" &&
-                  <button
-                  onClick={publishProgram}
-                  >
-                    Publish
-                  </button>
-                }
                 <Tag
                   tagTitle={moment(post.createdAt).calendar()}
                   tagColor="primary"
                 />
+                  {
+                  post.publicationStatus === "draft" &&
+                  <Button
+                  onClick={publishProgram}
+                  size="small"
+                  >
+                    Publish
+                  </Button>
+                }
                 <h2 className="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
                     {post.title}
                 </h2>
