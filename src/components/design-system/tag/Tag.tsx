@@ -1,5 +1,5 @@
 type TagPropTypes = {
-  tagTitle: string;
+  tagTitle?: string;
   tagColor: "primary" | "secondary" | "tertiary" | "warning" | "danger" | "success";
 }
 

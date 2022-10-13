@@ -5,6 +5,7 @@ import { userAtom } from '../../../store';
 import axios from 'axios';
 import Form from '../../../components/design-system/form/Form';
 import TextInput from '../../../components/design-system/TextInput';
+import { useEffect } from 'react';
 
 type EditUserPropType = {
   firstName?: string;
@@ -17,14 +18,23 @@ type EditUserPropType = {
 export default function EditUserForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
-  const initialValues   = {
-    firstName: userState.user.userProfile.firstName,
-    lastName: userState.user.userProfile.lastName,
-    occupation: userState.user.userProfile.occupation,
+  let initialValues   = {
+    firstName: "",
+    lastName: "",
+    occupation: "",
     userId: userState.user.id,
-    description: userState.user.userProfile.description,
+    description: "",
     };
   return (
+    useEffect(() => {
+      axios.get(`http://localhost:6950/auth/get-user/${initialValues.userId}`)
+      .then((response) => {
+        initialValues.firstName = response.data.data.userProfile.firstName;
+        initialValues.lastName = response.data.data.lastName;
+        initialValues.occupation = response.data.data.occupation;
+        initialValues.description = response.data.data.description;
+      })
+    },[]),
     <Form
       submitMethod={(values : EditUserPropType ) => {
         axios.post(

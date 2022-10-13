@@ -1,6 +1,6 @@
 type SmallDataCardProps = {
   text: string;
-  value: string | number;
+  value?: string | number;
 }
 
 
