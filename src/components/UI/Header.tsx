@@ -49,6 +49,8 @@ export default function Header({
                     <img src={logo} className="mr-3 h-6 sm:h-9" alt="Flowbite Logo" />
                 </Link>
                 <div className="flex items-center lg:order-2">
+
+                    <Link to="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 mr-4">Contact</Link>
                     {
                       authenticated === false && (
                         <Link to="/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</Link>
