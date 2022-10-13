@@ -29,7 +29,7 @@ function TagsInput({
               { tags.map((tag, index) => (
                   <Tag
                       tagTitle={tag}
-                      tagColor="tertiary"
+                      tagColor="primary"
                   />
               )) }
           </div>

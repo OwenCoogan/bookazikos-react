@@ -1,6 +1,6 @@
 type TagPropTypes = {
   tagTitle?: string;
-  tagColor: "primary" | "secondary" | "tertiary" | "warning" | "danger" | "success";
+  tagColor: "primary" | "secondary"  | "warning" | "danger" | "success";
 }
 
 export default function Tag({

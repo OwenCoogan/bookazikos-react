@@ -12,6 +12,7 @@ import { authAtom } from './store';
 import axios from 'axios';
 function App() {
   const [ auth,setAuth ] = useRecoilState(authAtom);
+  const routes = auth ? <AuthenticatedRoutes/> : <UnauthenticatedRoutes/>;
 
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
@@ -42,8 +43,7 @@ function App() {
           draggable
           pauseOnHover
         />
-         <UnauthenticatedRoutes/>
-        {auth && <AuthenticatedRoutes/>}
+        {routes}
       </BrowserRouter>,
     </AuthorizationProvider>
   );
