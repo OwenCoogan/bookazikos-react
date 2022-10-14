@@ -16,6 +16,8 @@ export default function UserSettings() {
     axios.get(`http://localhost:6950/auth/get-user/${userId}`)
     .then((response) => {
       setUserProfile(response.data.data)
+
+      console.log(response.data.data)
     })
   }, [])
 

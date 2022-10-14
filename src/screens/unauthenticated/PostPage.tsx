@@ -9,20 +9,20 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
+import Comment from '../../components/UI/comment-section/Comment';
 
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
   const [editorState, setEditorState] = useState(newEditor);
-  const navigate = useNavigate();
 
   function publishProgram(){
     axios.post('http://localhost:6950/posts/publish-post', {
       id: post.id,
     })
     .then((response) => {
+      console.log(response);
       toast.success("Post published successfully");
-      navigate('/dashboard');
     })
   }
 
@@ -32,6 +32,7 @@ export default function PostPage() {
     id: "",
     content: "",
     publicationStatus: "",
+    comments:[],
     author : {
       firstName: "",
       lastName: "",
@@ -42,9 +43,13 @@ export default function PostPage() {
   const {id} = useParams();
   useEffect(() => {
     axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
-      setPost(response.data.data);
+      setPost(response.data.data)
       setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
-    });
+    })
+    .then(() => {
+      console.log(post);
+    })
+    ;
   }, []);
 
   return (
@@ -104,7 +109,7 @@ export default function PostPage() {
         </div>
         <CommentSection
           postId={post.id}
-          comments={[]}
+          comments={post.comments}
         />
 
     </div>

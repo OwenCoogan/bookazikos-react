@@ -1,11 +1,12 @@
-import { UserProfileType } from '../../design-system/@types';
+import moment from 'moment';
+import Tag from '../../design-system/tag/Tag';
 
 type CommentType = {
-  comment: string;
-  user?: UserProfileType;
+  comment:any;
 }
 
 export default function Comment({comment}:CommentType) {
+    console.log(comment)
   return (
     <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
           <footer className="flex justify-between items-center mb-2">
@@ -13,8 +14,11 @@ export default function Comment({comment}:CommentType) {
                   <p className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white"><img
                           className="mr-2 w-6 h-6 rounded-full"
                           src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                          alt="Michael Gough"/>Michael Gough</p>
-                  <p className="text-sm text-gray-600 dark:text-gray-400">Feb. 8, 2022</p>
+                          alt="Michael Gough"/>{comment.author.firstName + ' ' + comment.author.lastName }</p>
+                  <Tag
+                    tagTitle={moment(comment.createdAt).calendar()}
+                    tagColor="primary"
+                  />
               </div>
               <button id="dropdownComment1Button" data-dropdown-toggle="dropdownComment1"
                   className="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
@@ -46,9 +50,7 @@ export default function Comment({comment}:CommentType) {
                   </ul>
               </div>
           </footer>
-          <p className="text-gray-500 dark:text-gray-400">Very straight-to-point article. Really worth time reading. Thank you! But tools are just the
-              instruments for the UX designers. The knowledge of the design tools are as important as the
-              creation of the design strategy.</p>
+          <p className="text-gray-500 dark:text-gray-400">{comment.content}</p>
           <div className="flex items-center mt-4 space-x-4">
               <button type="button"
                   className="flex items-center text-sm text-gray-500 hover:underline dark:text-gray-400">
