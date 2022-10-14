@@ -9,8 +9,6 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
-import Comment from '../../components/UI/comment-section/Comment';
-
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
@@ -33,6 +31,7 @@ export default function PostPage() {
     content: "",
     publicationStatus: "",
     comments:[],
+    tags: [],
     author : {
       firstName: "",
       lastName: "",
@@ -44,6 +43,7 @@ export default function PostPage() {
   useEffect(() => {
     axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
       setPost(response.data.data)
+      console.log(response.data.data);
       setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
     })
     ;
@@ -53,19 +53,13 @@ export default function PostPage() {
     <section className="bg-white dark:bg-gray-900 max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl">
     <div className="px-6 py-10 mx-auto flex-row sm:flex-col">
         <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white">From the blog</h1>
-        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
-            <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"alt=""/>
-
-            <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
+        <div
+          className="flex flex-row items-left justify-left mt-4">
                 <Tag
                   tagTitle={post.publicationStatus.toUpperCase()}
                   tagColor={
                     post.publicationStatus === "published" ? "success" : "warning"
                   }
-                />
-                <Tag
-                  tagTitle={moment(post.createdAt).calendar()}
-                  tagColor="primary"
                 />
                   {
                   post.publicationStatus === "draft" &&
@@ -76,6 +70,26 @@ export default function PostPage() {
                     Publish
                   </Button>
                 }
+                <Tag
+                  tagTitle={moment(post.createdAt).calendar()}
+                  tagColor="secondary"
+                />
+            {
+            post.tags.map((tag: any) => {
+              return (
+                <Tag
+                  key={tag.id}
+                  tagTitle={tag.name}
+                  tagColor="primary"
+                />
+              )
+            })
+            }
+        </div>
+        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
+            <img className="object-cover w-full lg:mx-6 lg:w-1/2 rounded-xl h-72 lg:h-96" src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80"alt=""/>
+
+            <div className="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
                 <h2 className="block mt-4 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
                     {post.title}
                 </h2>

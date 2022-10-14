@@ -25,7 +25,7 @@ export default function Button({
     <button
       type="button"
       onClick={onClick}
-      className={`focus:outline-none ${sizes[size]} text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-900`}>
+      className={`focus:outline-none ${sizes[size]} text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-900`}>
         {children}
     </button>
   )
