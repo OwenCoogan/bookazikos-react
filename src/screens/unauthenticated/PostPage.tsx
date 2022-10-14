@@ -46,11 +46,8 @@ export default function PostPage() {
       setPost(response.data.data)
       setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
     })
-    .then(() => {
-      console.log(post);
-    })
     ;
-  }, []);
+  });
 
   return (
     <section className="bg-white dark:bg-gray-900 max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl">
