@@ -6,7 +6,6 @@ type CommentType = {
 }
 
 export default function Comment({comment}:CommentType) {
-    console.log(comment)
   return (
     <article className="p-6 mb-6 text-base bg-white rounded-lg dark:bg-gray-900">
           <footer className="flex justify-between items-center mb-2">
