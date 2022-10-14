@@ -15,13 +15,13 @@ export default function CommentSection({
   comments,
 }: CommentSectionPropsType) {
   const initialValues = {
-    comment: '',
+    content: '',
   }
   const user = useRecoilValue(userAtom);
   function submitMethod(values: any){
     axios.post(
       `http://localhost:6950/posts/${postId}/comment/add`,{
-        comment: values.comment,
+        content: values.content,
         postId: postId,
         userId: user.user.id,
       }
@@ -48,7 +48,7 @@ export default function CommentSection({
                 placeholder="Comment"
                 type="text"
                 onChange={(event) => {
-                  initialValues.comment = event.target.value;
+                  initialValues.content = event.target.value;
                 }}
               />
           </div>
