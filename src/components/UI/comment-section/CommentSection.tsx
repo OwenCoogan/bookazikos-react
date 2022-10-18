@@ -17,6 +17,11 @@ export default function CommentSection({
   const initialValues = {
     content: '',
   }
+  function onKeyDown(e: any) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  }
   const user = useRecoilValue(userAtom);
   function submitMethod(values: any){
     axios.post(
@@ -44,12 +49,13 @@ export default function CommentSection({
               <label className="sr-only">Your comment</label>
               <TextInput
                 label="Comment"
-                inputName="Comment"
+                inputName="content"
                 placeholder="Comment"
                 type="text"
                 onChange={(event) => {
                   initialValues.content = event.target.value;
                 }}
+                onKeyDown={onKeyDown}
               />
           </div>
       </Form>

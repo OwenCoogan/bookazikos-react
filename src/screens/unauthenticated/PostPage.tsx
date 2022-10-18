@@ -9,6 +9,8 @@ import moment from 'moment';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
+import { getPost } from '../../store/queries/posts';
+import { useQuery } from 'react-query';
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
@@ -40,13 +42,12 @@ export default function PostPage() {
     createdAt: ""
   });
   const {id} = useParams();
+  const { data } = useQuery('get-single-post', () => getPost(id));
   useEffect(() => {
-    axios.get(`http://localhost:6950/posts/${id}`).then((response) => {
-      setPost(response.data.data)
-      console.log(response.data.data);
-      setEditorState(EditorState.createWithContent(convertFromRaw(response.data.data.richContent)));
-    })
-    ;
+    if(data){
+      setPost(data);
+      setEditorState(EditorState.createWithContent(convertFromRaw(data.richContent)));
+    }
   });
 
   return (

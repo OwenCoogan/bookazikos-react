@@ -1,14 +1,16 @@
 import axios from 'axios';
-import { PostTypes } from '../../components/design-system/@types';
 
 export const baseUrl = `http://localhost:6950/posts`;
 
 export const getPosts = async () => {
-  const { data } = await axios.get(`${baseUrl}/get-posts`);
-  return data.data;
+  const { data : response  } = await axios.get(`${baseUrl}/get-posts`);
+  return response.data;
   };
 
-  export const getPost = (id: string ): Promise<PostTypes> => axios.get(`/${id}`).then(response => response.data)
+  export const getPost = async (id: any) => {
+    const { data: response } = await axios.get(`${baseUrl}/${id}`);
+    return response.data
+  }
 
 export const createPost = async (post: any) => {
   const { data : response } = await axios.post(`${baseUrl}/create-post`, post);
