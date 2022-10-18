@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../../store';
 import Form from '../../design-system/form/Form';
@@ -14,19 +15,16 @@ export default function CommentSection({
   postId,
   comments,
 }: CommentSectionPropsType) {
+  const [commentContent, setCommentContent] = useState('');
+
   const initialValues = {
-    content: '',
-  }
-  function onKeyDown(e: any) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-    }
+    content: commentContent,
   }
   const user = useRecoilValue(userAtom);
-  function submitMethod(values: any){
+  function submitMethod(){
     axios.post(
       `http://localhost:6950/posts/${postId}/comment/add`,{
-        content: values.content,
+        content: commentContent,
         postId: postId,
         userId: user.user.id,
       }
@@ -43,19 +41,19 @@ export default function CommentSection({
       </div>
       <Form
         initialValues={initialValues}
-        submitMethod={(values: any) => submitMethod(initialValues)}
+        submitMethod={(values: any) => submitMethod()}
         validationSchema={null}>
           <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
               <label className="sr-only">Your comment</label>
               <TextInput
                 label="Comment"
-                inputName="content"
+                inputName="comment"
                 placeholder="Comment"
                 type="text"
                 onChange={(event) => {
-                  initialValues.content = event.target.value;
+                  setCommentContent(event.target.value);
+                  console.log(event.target.value);
                 }}
-                onKeyDown={onKeyDown}
               />
           </div>
       </Form>
