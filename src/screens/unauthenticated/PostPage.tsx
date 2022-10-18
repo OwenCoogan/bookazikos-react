@@ -1,11 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import Tag from '../../components/design-system/tag/Tag';
+import {useParams } from 'react-router-dom';
 import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertFromRaw, EditorState } from 'draft-js';
-import moment from 'moment';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
@@ -52,19 +50,22 @@ export default function PostPage() {
   });
 
   return (
-    <section className="bg-white dark:bg-gray-900 max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl lg:h-96 w-full">
-    <div className="px-6 py-10 w-1/2 mx-auto flex-row sm:flex-col">
+    <section className="bg-white dark:bg-gray-900 min-w-full max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl w-full mb-4 md:mb-0 max-w-screen-md mx-auto relative">
+    <div className="px-6 py-10 w-full md:w-2/3 mx-auto flex-row">
       <div className='flex flex-row gap-4'>
         <h1 className="text-3xl font-semibold text-gray-800 capitalize lg:text-4xl dark:text-white mb-6">From the blog</h1>
         <div
           className="flex flex-row items-left justify-left mt-4 mb-6 align-right">
-                <Button
-                size='small'
-                color='primary'
-                onClick={publishProgram}
-              >
-                Publish
-              </Button>
+          {
+            post.publicationStatus=== "draft" &&
+            <Button
+            size='small'
+            color='primary'
+            onClick={publishProgram}
+            >
+              Publish
+            </Button>
+          }
         </div>
       </div>
         <PostHeader
@@ -74,7 +75,7 @@ export default function PostPage() {
           publicationStatus={post.publicationStatus}
           tags={post.tags}
         />
-        <div className="mt-8 lg:-mx-6 lg:flex lg:items-center">
+        <div className="mt-8 lg:flex lg:items-center">
           <Editor
             editorState={editorState}
             toolbarHidden={true}

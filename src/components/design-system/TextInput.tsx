@@ -1,7 +1,7 @@
 import { Field } from 'formik';
 
 type TextInputProps = {
-  label: string;
+  label?: string;
   inputName: string;
   type: string;
   placeholder: string;
@@ -23,7 +23,7 @@ export default function TextInput({
   value,
 }: TextInputProps) {
   return (
-    <div className="w-full md:w-full px-3 mb-6">
+    <div className="w-full md:w-full mb-6">
       <label
         htmlFor={inputName}
         className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
