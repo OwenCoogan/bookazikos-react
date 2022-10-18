@@ -12,12 +12,14 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
 import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
+import ImageInput from '../../../../components/design-system/ImageInput';
 
 type PostPropType = {
   title: string;
   userId: string;
   content: any;
   richContent: any;
+  images?: any;
   tags : string[];
 
 }
@@ -33,7 +35,6 @@ function onKeyDown(e: any) {
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
-  const inlineToolbarPlugin = createInlineToolbarPlugin();
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
@@ -43,6 +44,7 @@ export default function CreatePostForm() {
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
+    images : [],
     };
   function setTags(tags: string[]) {
     initialValues.tags = tags
@@ -94,6 +96,11 @@ export default function CreatePostForm() {
               initialValues.content = event.target.value;
             }}
             onKeyDown={onKeyDown}
+          />
+          <ImageInput
+            onChange={(event:any) => {
+              return initialValues.content = event.target.value;
+            }}
           />
         </div>
         <div
