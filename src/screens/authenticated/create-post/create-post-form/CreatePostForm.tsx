@@ -98,8 +98,8 @@ export default function CreatePostForm() {
             onKeyDown={onKeyDown}
           />
           <ImageInput
-            onChange={(event:any) => {
-              return initialValues.content = event.target.value;
+            handleSubmit={(file: any) => {
+              initialValues.images.push(file);
             }}
           />
         </div>

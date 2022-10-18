@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function ImageInput(
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
+  handleSubmit: (event: React.ChangeEvent<HTMLInputElement>) => void,
 ) {
   const [file, setFile] = useState<any>();
   return (
@@ -16,7 +16,7 @@ export default function ImageInput(
         onChange={(e) => {
           if (e.target.files) {
             setFile(e.target.files[0]);
-            onChange(file);
+            handleSubmit(file);
           }
         }}
         />
