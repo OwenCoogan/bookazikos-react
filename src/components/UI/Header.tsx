@@ -82,6 +82,7 @@ export default function Header({
                         link="/about"
                       />
                       <Button
+                        color='danger'
                         onClick={logout}
                       >
                         Logout

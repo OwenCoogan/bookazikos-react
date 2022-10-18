@@ -2,6 +2,7 @@ import React from 'react';
 
 export type ButtonPropsType = {
   icon?: boolean,
+  color: 'primary' | 'secondary' | 'danger' | 'success' | 'warning'
   size?: 'small' | 'medium' | 'large',
   iconPosition?: 'left' | 'right',
   iconSize?: 'small' | 'medium' | 'large',
@@ -12,6 +13,7 @@ export type ButtonPropsType = {
 export default function Button({
   children,
   size = 'small',
+  color,
   onClick
 }: ButtonPropsType) {
 
@@ -25,7 +27,7 @@ export default function Button({
     <button
       type="button"
       onClick={onClick}
-      className={`focus:outline-none ${sizes[size]} text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm dark:bg-yellow-600 dark:hover:bg-yellow-700 dark:focus:ring-yellow-900`}>
+      className={`${sizes[size]} text-white bg-${color}-700 hover:bg-${color}-800 focus:ring-4 focus:ring-${color}-300 font-medium rounded-lg text-sm px-5 max-h-20 my-auto mr-2 dark:bg-${color}-600 dark:hover:bg-${color}-700 focus:outline-none dark:focus:ring-${color}-800`}>
         {children}
     </button>
   )
