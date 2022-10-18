@@ -11,7 +11,6 @@ export default function Dashboard(){
     const {getDrafts} = usePostActions();
     useEffect(() => {
       getDrafts()}, [posts, drafts]);
-
     return (
       <>
         <div

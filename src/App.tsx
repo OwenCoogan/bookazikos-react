@@ -10,9 +10,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRecoilState } from 'recoil';
 import { authAtom } from './store';
 import axios from 'axios';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 function App() {
   const [ auth,setAuth ] = useRecoilState(authAtom);
   const routes = auth ? <AuthenticatedRoutes/> : <UnauthenticatedRoutes/>;
+  const queryClient = new QueryClient()
 
   useEffect(() => {
     const userToken = localStorage.getItem("userToken");
@@ -27,6 +30,7 @@ function App() {
   })
 
   return (
+    <QueryClientProvider client={queryClient}>
     <AuthorizationProvider>
       <BrowserRouter>
       <Header
@@ -46,6 +50,7 @@ function App() {
         {routes}
       </BrowserRouter>,
     </AuthorizationProvider>
+    </QueryClientProvider>
   );
 }
 

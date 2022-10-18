@@ -11,6 +11,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
+import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 
 type PostPropType = {
   title: string;
@@ -32,6 +33,7 @@ function onKeyDown(e: any) {
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
+  const inlineToolbarPlugin = createInlineToolbarPlugin();
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
@@ -99,10 +101,10 @@ export default function CreatePostForm() {
         >
           <Editor
             editorState={editorState}
-            toolbarClassName="toolbarClassName"
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={setEditorState}
+
           />
         </div>
       </div>

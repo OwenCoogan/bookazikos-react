@@ -1,11 +1,10 @@
-import { Link } from 'react-router-dom';
 import holdingHands from '../../ressources/image/holding_hands.jpeg';
 import ButtonLink from '../design-system/buttons/ButtonLink';
 
 export default function HeaderHero() {
   return (
     <section>
-	<div className="bg-primary-300 text-white py-20">
+	<div className="bg-yellow-300 text-white py-20">
 		<div className="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
 			<div className="flex flex-col lg:w-1/3 justify-center items-start p-8 w-full">
 			<h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">Nous travaillons pour l’égalité fille garçon</h1>
