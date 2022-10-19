@@ -11,7 +11,7 @@ export default function PostCard({
   createdAt,
 }: PostTypes ) {
   return (
-    <div className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+    <div className="max-w-sm max-h-52 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
     <Link to="#">
         <img className="rounded-t-lg" src="/docs/images/blog/image-1.jpg" alt="" />
     </Link>
