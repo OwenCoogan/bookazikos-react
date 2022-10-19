@@ -7,7 +7,7 @@ import { convertFromRaw, EditorState } from 'draft-js';
 import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
-import { getPost } from '../../store/queries/posts';
+import { getPost } from '../../store/queries/posts/posts';
 import { useQuery } from 'react-query';
 import PostHeader from '../../components/design-system/post-header/PostHeader';
 export default function PostPage() {

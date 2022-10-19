@@ -12,7 +12,7 @@ export default function PostGalleryCard({
 }: PostGalleryCardProps){
   return (
 
-    <article className="max-w-xs mx-auto shadow-md">
+    <article className="max-w-xs shadow-md mx-auto">
         <Link to={`/post/${post.id}`}>
             <img src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/article/blog-2.png" className="mb-2 rounded-lg max-w-xs w-full" alt="Image 2"/>
         </Link>

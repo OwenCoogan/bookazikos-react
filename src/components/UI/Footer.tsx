@@ -37,7 +37,7 @@ export default function Footer(){
                 <Link to="/">
                     <img src={logo} className="h-6 sm:h-9 mx-auto mb-8" alt="Flowbite Logo" />
                 </Link>
-          <span className="block text-sm text-center text-gray-500 dark:text-gray-400">© 2021-2022 <a href="#" className="hover:underline">Crece En Libertad</a>. All Rights Reserved.
+          <span className="block text-sm text-center text-gray-500 dark:text-gray-400">© 2021-2022 <a href="#" className="hover:underline">Crece en Libertad</a>. All Rights Reserved.
           </span>
           <ul className="flex justify-center mt-5 space-x-5">
               <li>

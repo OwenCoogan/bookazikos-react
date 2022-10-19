@@ -17,8 +17,8 @@ export default function VideoHero() {
 				</div>
 			</div>
 			<div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
-				<h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">TechFest</h1>
-				<h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Space : The Timeless Infinity
+				<h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">Tequila</h1>
+				<h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Un projet pour l'égalité fille garçon
 				</h2>
 				<p className="text-sm md:text-base text-gray-50 mb-4">Explore your favourite events and
 					register now to showcase your talent and win exciting prizes.</p>

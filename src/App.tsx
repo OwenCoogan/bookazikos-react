@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './App.css';
+import './providers/localization/i18next';
 import AuthorizationProvider from './providers/auth/useGetAuth';
 import { BrowserRouter } from 'react-router-dom';
 import Header from './components/UI/Header';

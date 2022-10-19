@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { QueryClient, useQueryClient } from 'react-query';
+import { toast } from 'react-toastify';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../../store';
 import Form from '../../design-system/form/Form';
@@ -16,7 +18,7 @@ export default function CommentSection({
   comments,
 }: CommentSectionPropsType) {
   const [commentContent, setCommentContent] = useState('');
-
+  const queryClient = useQueryClient()
   const initialValues = {
     content: commentContent,
   }
@@ -30,6 +32,8 @@ export default function CommentSection({
       }
     )
     .then((response) => {
+      queryClient.setQueryData(['get'], response.data.data);
+      toast.success("Comment added successfully");
       console.log(response);
     })
   }

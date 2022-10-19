@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { baseUrl, Endpoints } from '.';
+import { baseUrl, Endpoints } from '..';
 
 
 export const getPosts = async () => {

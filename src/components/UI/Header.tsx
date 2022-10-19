@@ -98,6 +98,13 @@ export default function Header({
                         </>
                         )
                       }
+                      <li>
+                        <Link
+                          to="/about"
+                        >
+                          About
+                        </Link>
+                      </li>
                     </ul>
                 </div>
 
