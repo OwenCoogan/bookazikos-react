@@ -2,8 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserType } from '../../components/design-system/@types'
-import PostCard from '../../components/design-system/cards/post-card/PostCard'
 import SmallDataCard from '../../components/design-system/cards/small-data-card/SmallDataCard'
+import PostGalleryCard from '../../components/design-system/post-gallery/PostGalleryCard'
 import Tag from '../../components/design-system/tag/Tag'
 
 export default function UserProfile() {
@@ -72,13 +72,9 @@ export default function UserProfile() {
           userProfile?.posts &&
           userProfile.posts.map(
             (post:any) => (
-              <PostCard
-                title={post.title}
-                id={post.id}
-                author={post.author}
-                createdAt={post.createdAt}
-                content={post.content}
-                userId={post.userId} image={''}
+              <PostGalleryCard
+                post={post}
+
               />
             )
           )

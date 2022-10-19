@@ -34,4 +34,5 @@ export type PostTypes ={
   content: any;
   createdAt: string;
   image?: string;
+  tags: string[];
 }

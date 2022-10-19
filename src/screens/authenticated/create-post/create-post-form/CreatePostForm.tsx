@@ -12,6 +12,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
 import ImageInput from '../../../../components/design-system/ImageInput';
+import { validationSchema } from './CreateFormPost.validation';
 
 type PostPropType = {
   title: string;
@@ -65,8 +66,8 @@ export default function CreatePostForm() {
           values,
         )
           .then((res) => {
-            navigate('/posts');
-            toast.success('Post created successfully');
+            navigate('/drafts');
+            toast.success('Post created successfully & added to drafts');
 
           })
           .catch((err) => {
@@ -74,7 +75,8 @@ export default function CreatePostForm() {
           });
       }}
       initialValues={initialValues}
-      validationSchema={{}}
+      validationSchema={validationSchema}
+
     >
       <div className='flex flex-col lg:flex-row'>
         <div
@@ -88,6 +90,7 @@ export default function CreatePostForm() {
             onChange={(event) => {
               initialValues.title = event.target.value;
             }}
+
             onKeyDown={onKeyDown}
           />
           <TagsInput

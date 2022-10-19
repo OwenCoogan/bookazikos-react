@@ -1,4 +1,4 @@
-import { Field } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 
 type TextInputProps = {
   label?: string;
@@ -39,6 +39,10 @@ export default function TextInput({
         onKeyDown={onKeyDown}
         onBlur={onBlur}
         value={value}
+      />
+      <ErrorMessage
+          name={inputName}
+          className="text-danger-800"
       />
     </div>
   )
