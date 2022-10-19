@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import { authAtom } from './store';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Footer from './components/UI/Footer';
 
 function App() {
   const [ auth,setAuth ] = useRecoilState(authAtom);
@@ -48,6 +49,7 @@ function App() {
           pauseOnHover
         />
         {routes}
+        <Footer/>
       </BrowserRouter>,
     </AuthorizationProvider>
     </QueryClientProvider>
