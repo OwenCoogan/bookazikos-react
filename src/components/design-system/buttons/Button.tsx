@@ -7,7 +7,7 @@ export type ButtonPropsType = {
   iconPosition?: 'left' | 'right',
   iconSize?: 'small' | 'medium' | 'large',
   children?: React.ReactNode,
-  onClick?: () => void,
+  onClick?: any,
 }
 
 export default function Button({

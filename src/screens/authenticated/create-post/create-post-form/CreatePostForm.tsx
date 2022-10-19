@@ -11,7 +11,6 @@ import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
-import createInlineToolbarPlugin from '@draft-js-plugins/inline-toolbar';
 import ImageInput from '../../../../components/design-system/ImageInput';
 
 type PostPropType = {
@@ -19,7 +18,7 @@ type PostPropType = {
   userId: string;
   content: any;
   richContent: any;
-  images?: any;
+  image?: any;
   tags : string[];
 
 }
@@ -35,6 +34,8 @@ function onKeyDown(e: any) {
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
+  const [currentImage,setCurrentImage] = useState("");
+  const [currentImageFile,setCurrentImageFile] = useState({});
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
@@ -44,10 +45,15 @@ export default function CreatePostForm() {
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
-    images : [],
+    image : currentImageFile,
     };
   function setTags(tags: string[]) {
     initialValues.tags = tags
+  }
+  async function addImage({image, file}: {image: string, file: any}) {
+    setCurrentImage(image)
+    setCurrentImageFile(file)
+    console.log(file)
   }
   return (
     <>
@@ -97,21 +103,23 @@ export default function CreatePostForm() {
             }}
             onKeyDown={onKeyDown}
           />
+             <h2 className="text-center mb-4">Uploaded Image</h2>
+            {
+              currentImage && <img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/>
+            }
           <ImageInput
-            handleSubmit={(file: any) => {
-              initialValues.images.push(file);
-            }}
+            onSubmit={addImage}
+            previewVisible={false}
           />
         </div>
         <div
-          className='lg:m-auto justify-center items-center lg:w-1/2 h-96'
+          className='lg:mx-auto justify-center items-center lg:w-1/2 h-96'
         >
           <Editor
             editorState={editorState}
             wrapperClassName="wrapperClassName"
             editorClassName="editorClassName"
             onEditorStateChange={setEditorState}
-
           />
         </div>
       </div>
