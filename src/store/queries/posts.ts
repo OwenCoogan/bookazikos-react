@@ -1,33 +1,33 @@
 import axios from 'axios';
+import { baseUrl, Endpoints } from '.';
 
-export const baseUrl = `http://localhost:6950/posts`;
 
 export const getPosts = async () => {
-  const { data : response  } = await axios.get(`${baseUrl}/get-posts`);
+  const { data : response  } = await axios.get(`${baseUrl}${Endpoints.posts}/get-posts`);
   return response.data;
   };
 
   export const getPost = async (id: any) => {
-    const { data: response } = await axios.get(`${baseUrl}/${id}`);
+    const { data: response } = await axios.get(`${baseUrl}${Endpoints.posts}/${id}`);
     return response.data
   }
 
 export const createPost = async (post: any) => {
-  const { data : response } = await axios.post(`${baseUrl}/create-post`, post);
+  const { data : response } = await axios.post(`${baseUrl}${Endpoints.posts}/create-post`, post);
   return response.data;
 }
 
 export const updatePost = async (post: any) => {
-  const { data : response } = await axios.put(`${baseUrl}/update-post`, post);
+  const { data : response } = await axios.put(`${baseUrl}${Endpoints.posts}/update-post`, post);
   return response.data;
 }
 
 export const publishPost = async (id: string) => {
-  const { data : response } = await axios.put(`${baseUrl}/publish-post/${id}`);
+  const { data : response } = await axios.put(`${baseUrl}${Endpoints.posts}/publish-post/${id}`);
   return response.data;
 }
 
 export const deletePost = async (id: string) => {
-  const { data : response } = await axios.delete(`${baseUrl}/delete-post/${id}`);
+  const { data : response } = await axios.delete(`${baseUrl}${Endpoints.posts}/delete-post/${id}`);
   return response.data;
 }

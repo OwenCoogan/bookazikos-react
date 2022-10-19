@@ -1,7 +1,9 @@
+import { useQuery } from 'react-query';
 import { Link, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import logo from '../../ressources/image/logo.jpeg';
 import { authAtom, userAtom } from '../../store';
+import { getAdminData } from '../../store/queries/users/auth';
 import Button from '../design-system/buttons/Button';
 import DropdownLink from '../design-system/dropdown/user-dropdown/DropdownLink';
 import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
@@ -18,6 +20,7 @@ export default function Header({
   const navigate = useNavigate();
   const user = useRecoilState(userAtom)[0].user;
   const setUser = useSetRecoilState(userAtom);
+  const {data} = useQuery('get', getAdminData);
   const [ auth,setAuth ] = useRecoilState(authAtom);
   function logout(){
     localStorage.removeItem('token');
@@ -68,26 +71,8 @@ export default function Header({
                       user={
                         user
                       }
-                    >
-                      <DropdownLink
-                        text='settings'
-                        link="/user-settings"
-                      />
-                      <DropdownLink
-                        text='drafts'
-                        link="/drafts"
-                      />
-                      <DropdownLink
-                        text='About'
-                        link="/about"
-                      />
-                      <Button
-                        color='danger'
-                        onClick={logout}
-                      >
-                        Logout
-                      </Button>
-                    </UserDropdown>
+                      draftCount={data?.numberOfDrafts}
+                    />
                   </div>
                   )
                 }

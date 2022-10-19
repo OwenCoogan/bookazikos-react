@@ -19,7 +19,7 @@ export default function Icon({
     <div
       className='px-3'
     >
-      <Icon size={size} color={theme.extend.colors[color][900]} className={``}/>
+      <Icon size={size} color={theme.extend.colors[color][300]} className={``}/>
     </div>
   )
 }

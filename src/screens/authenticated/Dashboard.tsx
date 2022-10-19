@@ -2,15 +2,13 @@ import { useRecoilValue } from 'recoil';
 import { draftListAtom, postListAtom } from '../../store/post';
 import DataCard from '../../components/design-system/cards/data-card/DataCard';
 import PostListCard from '../../components/design-system/cards/post-list-card/PostListCard';
-import { useEffect } from 'react';
-import { usePostActions } from '../../store/actions/post.actions';
+import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { getAdminData } from '../../store/queries/users/auth';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
-    const [drafts] = useRecoilValue(draftListAtom);
-    const {getDrafts} = usePostActions();
-    useEffect(() => {
-      getDrafts()}, [posts, drafts]);
+    const { data } = useQuery('get', getAdminData);
     return (
       <>
         <div
@@ -24,11 +22,11 @@ export default function Dashboard(){
             />
             <DataCard
               title="Total Users"
-              displayValue="100"
+              displayValue={data?.numberOfUsers}
             />
             <DataCard
               title="Total Comments"
-              displayValue="100"
+              displayValue={data?.numberOfComments}
             />
           </div>
           <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import PostCard from '../../components/design-system/cards/post-card/PostCard';
+import PostGalleryCard from '../../components/design-system/post-gallery/PostGalleryCard';
 
 export default function DraftsList() {
 
@@ -13,18 +13,13 @@ export default function DraftsList() {
   }, []);
 
   return (
-    <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 my-24">
         {
           posts &&
           posts.map(
             (post:any) => (
-              <PostCard
-                title={post.title}
-                id={post.id}
-                author={post.author}
-                createdAt={post.createdAt}
-                content={post.content}
-                userId={post.userId}
+              <PostGalleryCard
+                post={post}
               />
             )
           )

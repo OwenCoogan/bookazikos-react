@@ -6,12 +6,12 @@ import DropdownLink from './DropdownLink';
 
 type UserDropdownProps = {
   user: any
-  children : React.ReactNode
+	draftCount: number;
 }
 
 export default function UserDropdown({
   user,
-  children
+	draftCount
 }: UserDropdownProps){
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -38,9 +38,9 @@ export default function UserDropdown({
 					text='Dashboard'
 					 />
 					<DropdownLink
-					icon='AiFillBook'
 					link='/drafts'
 					text='Drafts'
+					count={draftCount}
 					 />
 					<DropdownLink
 					icon='AiOutlineFileDone'
