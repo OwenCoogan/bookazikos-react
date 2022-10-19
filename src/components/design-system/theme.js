@@ -87,12 +87,6 @@ const theme = {
       },
     },
   },
-  safelist: [
-    {
-      pattern:
-        /(bg|text|rounded)-(primary|secondary|tertiary|success|warning|danger|full|sm|md|lg)-(100|200|300|400|500|600|700|800|900)/,
-    },
-  ],
 }
 
 module.exports = theme

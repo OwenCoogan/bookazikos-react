@@ -13,7 +13,7 @@ export default function PostList() {
   }, []);
 
   return (
-    <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+    <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 min-h-screen">
         {
           posts &&
           posts.map(
