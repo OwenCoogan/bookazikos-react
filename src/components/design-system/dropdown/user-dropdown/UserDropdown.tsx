@@ -1,7 +1,14 @@
 import { useState } from 'react';
+import { useQuery } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { authAtom, userAtom } from '../../../../store';
+import { getAdminData } from '../../../../store/queries/users/auth';
 import Avatar from '../../avatar/Avatar';
 import NumberBadge from '../../badge/NumberBadge';
 import ButtonLink from '../../buttons/ButtonLink';
+import DropdownButton from './DropdownButton';
 import DropdownLink from './DropdownLink';
 
 type UserDropdownProps = {
@@ -14,6 +21,32 @@ export default function UserDropdown({
 	draftCount
 }: UserDropdownProps){
   const [isOpen, setIsOpen] = useState(false);
+	const [ auth,setAuth ] = useRecoilState(authAtom);
+  const navigate = useNavigate();
+  const setUser = useSetRecoilState(userAtom);
+
+function logout(){
+	localStorage.removeItem('token');
+	navigate('/');
+	toast.success(`Bye bye ${user.firstName}!`);
+	setAuth(false);
+	setUser({
+		authenticated: false,
+		isUserProfileCompleted: false,
+		user: {
+			id: '',
+			email: '',
+			posts: [],
+			userProfile: {
+				id: '',
+				firstName: '',
+				lastName: '',
+				occupation: '',
+				description: '',
+			}
+		}
+	})
+}
   return (
     <div className="align-right">
       <button
@@ -47,6 +80,11 @@ export default function UserDropdown({
 					link='/posts'
 					text='Post'
 					 />
+					<DropdownButton
+					icon='AiOutlineLogout'
+					text='Logout'
+					onClick={logout}
+					/>
 			</ul>
 		</div>
 	</aside>

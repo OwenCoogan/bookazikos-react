@@ -1,6 +1,4 @@
-import { cp } from 'fs';
 import { useQuery } from 'react-query';
-import PostCard from '../../components/design-system/cards/post-card/PostCard';
 import Grid from '../../components/design-system/grid/Grid';
 import PostGalleryCard from '../../components/design-system/post-gallery/PostGalleryCard';
 import HeaderHero from '../../components/UI/HeaderHero';

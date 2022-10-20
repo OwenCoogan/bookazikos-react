@@ -21,28 +21,6 @@ export default function Header({
   const user = useRecoilState(userAtom)[0].user;
   const setUser = useSetRecoilState(userAtom);
   const {data} = useQuery('get', getAdminData);
-  const [ auth,setAuth ] = useRecoilState(authAtom);
-  function logout(){
-    localStorage.removeItem('token');
-    navigate('/');
-    setAuth(false);
-    setUser({
-      authenticated: false,
-      isUserProfileCompleted: false,
-      user: {
-        id: '',
-        email: '',
-        posts: [],
-        userProfile: {
-          id: '',
-          firstName: '',
-          lastName: '',
-          occupation: '',
-          description: '',
-        }
-      }
-    })
-  }
   return (
     <>
       <header>
