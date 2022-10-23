@@ -12,12 +12,14 @@ export default function Form({
   children,
   initialValues,
   submitMethod,
+  validationSchema,
   style
 }: FormProps) {
   return (
     <Formik
       initialValues={initialValues}
       onSubmit={submitMethod}
+      enableReinitialize={true}
     >
       <FormikForm
         className="w-full m-auto"

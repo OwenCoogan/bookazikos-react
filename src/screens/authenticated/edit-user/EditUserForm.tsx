@@ -1,11 +1,9 @@
-import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { userAtom } from '../../../store';
 import axios from 'axios';
 import Form from '../../../components/design-system/form/Form';
 import TextInput from '../../../components/design-system/TextInput';
-import { useEffect } from 'react';
+import { useState } from 'react';
 
 type EditUserPropType = {
   firstName?: string;
@@ -15,31 +13,29 @@ type EditUserPropType = {
   occupation?: string;
 }
 
-export default function EditUserForm() {
-  const userState = useRecoilState(userAtom)[0];
+
+export default function EditUserForm({
+  firstName,
+  lastName,
+  description,
+  occupation,
+  userId,
+}:EditUserPropType) {
   const navigate = useNavigate();
-  let initialValues   = {
-    firstName: "",
-    lastName: "",
-    occupation: "",
-    userId: userState.user.id,
-    description: "",
-    };
+  const [user , setUser] = useState({
+    firstName: firstName || '',
+    lastName: lastName || '',
+    description: description || '',
+    occupation: occupation || '',
+  });
+
   return (
-    useEffect(() => {
-      axios.get(`http://localhost:6950/auth/get-user/${initialValues.userId}`)
-      .then((response) => {
-        initialValues.firstName = response.data.data.userProfile.firstName;
-        initialValues.lastName = response.data.data.lastName;
-        initialValues.occupation = response.data.data.occupation;
-        initialValues.description = response.data.data.description;
-      })
-    },[]),
     <Form
-      submitMethod={(values : EditUserPropType ) => {
+      submitMethod={() => {
+        console.log(user)
         axios.post(
-          `http://localhost:6950/auth/edit-user/${userState.user.id}`,
-          values,
+          `http://localhost:6950/auth/edit-user/${userId}`,
+          user,
         )
           .then((res) => {
             toast.success("User updated successfully");
@@ -50,7 +46,7 @@ export default function EditUserForm() {
             toast.error('Something went wrong = ' + err);
           });
       }}
-      initialValues={initialValues}
+      initialValues={user}
       validationSchema={{}}
     >
       <TextInput
@@ -58,36 +54,28 @@ export default function EditUserForm() {
         inputName="firstName"
         placeholder="First Name"
         type="text"
-        onChange={(event) => {
-          initialValues.firstName = event.target.value;
-        }}
+        value={user.firstName}
       />
       <TextInput
         label="Last Name"
         inputName="lastName"
         placeholder="Last Name"
         type="text"
-        onChange={(event) => {
-          initialValues.lastName = event.target.value;
-        }}
+        value={user.lastName}
       />
       <TextInput
         label="Occupation"
         inputName="occupation"
         placeholder="Occupation"
         type="text"
-        onChange={(event) => {
-          initialValues.occupation = event.target.value;
-        }}
+        value={user.occupation}
       />
       <TextInput
         label="Description"
         inputName="description"
         placeholder="Description"
         type="text"
-        onChange={(event) => {
-          initialValues.description = event.target.value;
-        }}
+        value={user.description}
       />
     </Form>
   );
