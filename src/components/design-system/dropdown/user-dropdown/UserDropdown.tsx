@@ -4,10 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { authAtom, userAtom } from '../../../../store';
-import { getAdminData } from '../../../../store/queries/users/auth';
 import Avatar from '../../avatar/Avatar';
-import NumberBadge from '../../badge/NumberBadge';
-import ButtonLink from '../../buttons/ButtonLink';
 import DropdownButton from './DropdownButton';
 import DropdownLink from './DropdownLink';
 

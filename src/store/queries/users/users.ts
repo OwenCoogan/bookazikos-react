@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { baseUrl } from '..';
+import { baseUrl, Endpoints } from '..';
 
-export const getUserInfo = async (id: string) => {
-  const { data } = await axios.get(`${baseUrl}/get-user/${id}`);
+export const getUserInfoQuery = async (id: string) => {
+  const { data } = await axios.get(`${baseUrl}${Endpoints.auth}/get-user/${id}`);
+
   return data.data;
 }

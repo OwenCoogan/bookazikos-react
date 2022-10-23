@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { useState } from 'react';
-import { QueryClient, useQueryClient } from 'react-query';
+import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { useRecoilValue } from 'recoil';
 import { userAtom } from '../../../store';
+import { createCommentMutation } from '../../../store/queries/comments/comments';
 import Form from '../../design-system/form/Form';
 import TextInput from '../../design-system/TextInput';
 import Comment from './Comment';
@@ -18,24 +18,26 @@ export default function CommentSection({
   comments,
 }: CommentSectionPropsType) {
   const [commentContent, setCommentContent] = useState('');
-  const queryClient = useQueryClient()
+  const queryClient= useQueryClient();
   const initialValues = {
     content: commentContent,
   }
   const user = useRecoilValue(userAtom);
+  const { mutate:createComment } = useMutation(()=>createCommentMutation({
+    postId,
+    content: commentContent,
+    userId: user.user.id,
+  }), {
+    onSuccess(data) {
+      queryClient.invalidateQueries('get-single-post');
+      toast.success('Comment Added successfully');
+    },
+    onError(error: any) {
+      toast.error(error.message);
+    },
+  });
   function submitMethod(){
-    axios.post(
-      `http://localhost:6950/posts/${postId}/comment/add`,{
-        content: commentContent,
-        postId: postId,
-        userId: user.user.id,
-      }
-    )
-    .then((response) => {
-      queryClient.setQueryData(['get'], response.data.data);
-      toast.success("Comment added successfully");
-      console.log(response);
-    })
+    createComment();
   }
   return (
     <section className="bg-white dark:bg-gray-900 py-8 lg:py-16">
