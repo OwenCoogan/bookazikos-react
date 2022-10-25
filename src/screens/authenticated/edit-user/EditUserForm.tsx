@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import Form from '../../../components/design-system/form/Form';
 import TextInput from '../../../components/design-system/TextInput';
 import { useState } from 'react';
+import { Formik,Form } from 'formik';
+import { editUserMutation } from '../../../store/queries/users/auth';
+import { useMutation, useQueryClient } from 'react-query';
 
 type EditUserPropType = {
   firstName?: string;
@@ -22,62 +24,82 @@ export default function EditUserForm({
   userId,
 }:EditUserPropType) {
   const navigate = useNavigate();
-  const [user , setUser] = useState({
+  const queryClient = useQueryClient();
+
+  const initialValues = {
     firstName: firstName || '',
     lastName: lastName || '',
     description: description || '',
     occupation: occupation || '',
-  });
+  }
 
+  const mutation = useMutation(
+    (values:typeof initialValues) =>
+      editUserMutation(userId, values.firstName, values.lastName, values.description, values.occupation),
+      {
+        onSuccess(data) {
+          queryClient.invalidateQueries('get-single-user');
+          toast.success('User updated successfully');
+          navigate('/user-settings');
+        },
+        onError(error: any) {
+          toast.error(error.message);
+        }
+      }
+  );
   return (
-    <Form
-      submitMethod={() => {
-        console.log(user)
-        axios.post(
-          `http://localhost:6950/auth/edit-user/${userId}`,
-          user,
-        )
-          .then((res) => {
-            toast.success("User updated successfully");
-            navigate('/dashboard');
+    <Formik
+         initialValues={initialValues}
+         onSubmit={(values, actions) => {
+          mutation.mutate(values)
+         }}
+       >
+        {({ errors, touched, isSubmitting, setFieldValue,values }) => {
+          return (
+            <Form>
+              <TextInput
+                inputName="firstName"
+                placeholder='First Name'
+                label="First Name"
+                type="text"
+                value={values.firstName}
+                onChange={(e) => setFieldValue('firstName', e.target.value)}
+              />
+              <TextInput
+                inputName="lastName"
+                placeholder='Last Name'
+                label="Last Name"
+                type="text"
+                value={values.lastName}
+                onChange={(e) => setFieldValue('lastName', e.target.value)}
+              />
+              <TextInput
+                inputName="description"
+                placeholder='Description'
+                label="Description"
+                type="text"
+                value={values.description}
+                onChange={(e) => setFieldValue('description', e.target.value)}
+              />
+              <TextInput
+                inputName="occupation"
+                placeholder='Occupation'
+                label="Occupation"
+                type="text"
+                value={values.occupation}
+                onChange={(e) => setFieldValue('occupation', e.target.value)}
+              />
+              <button
+                type="submit"
+                className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'
+              >
+                Submit
+              </button>
+            </Form>
+          )
+        }}
 
-          })
-          .catch((err) => {
-            toast.error('Something went wrong = ' + err);
-          });
-      }}
-      initialValues={user}
-      validationSchema={{}}
-    >
-      <TextInput
-        label="First Name"
-        inputName="firstName"
-        placeholder="First Name"
-        type="text"
-        value={user.firstName}
-      />
-      <TextInput
-        label="Last Name"
-        inputName="lastName"
-        placeholder="Last Name"
-        type="text"
-        value={user.lastName}
-      />
-      <TextInput
-        label="Occupation"
-        inputName="occupation"
-        placeholder="Occupation"
-        type="text"
-        value={user.occupation}
-      />
-      <TextInput
-        label="Description"
-        inputName="description"
-        placeholder="Description"
-        type="text"
-        value={user.description}
-      />
-    </Form>
+    </Formik>
   );
 
 }

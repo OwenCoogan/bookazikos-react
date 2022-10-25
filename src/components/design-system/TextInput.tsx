@@ -38,7 +38,7 @@ export default function TextInput({
         onChange={onChange}
         onKeyDown={onKeyDown}
         onBlur={onBlur}
-        value={value}
+        defaultValue={value}
       />
       <ErrorMessage
           name={inputName}

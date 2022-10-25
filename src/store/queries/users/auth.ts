@@ -11,6 +11,11 @@ export const register = async (email: string, password: string , firstName:strin
   return response.data;
 }
 
+export const editUserMutation = async (id: string, firstName: string, lastName: string,occupation: string, description: string) => {
+  const { data: response } = await axios.post(`${baseUrl}${Endpoints.auth}/edit-user/${id}`, { firstName, lastName, occupation, description });
+  return response.data;
+}
+
 export const getAdminData = async () => {
   const { data: response } = await axios.get(`${baseUrl}${Endpoints.team}/get-data`);
   return response.data;
