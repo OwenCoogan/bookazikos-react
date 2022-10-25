@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Formik,Form } from 'formik';
 import { editUserMutation } from '../../../store/queries/users/auth';
 import { useMutation, useQueryClient } from 'react-query';
+import ImageInput from '../../../components/design-system/ImageInput';
 
 type EditUserPropType = {
   firstName?: string;
@@ -25,6 +26,8 @@ export default function EditUserForm({
 }:EditUserPropType) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const [currentImage,setCurrentImage] = useState("");
+  const [currentImageFile,setCurrentImageFile] = useState({});
 
   const initialValues = {
     firstName: firstName || '',
@@ -33,9 +36,14 @@ export default function EditUserForm({
     occupation: occupation || '',
   }
 
+  async function addImage({image, file}: {image: string, file: any}) {
+    setCurrentImage(image)
+    setCurrentImageFile(file)
+  }
+
   const mutation = useMutation(
     (values:typeof initialValues) =>
-      editUserMutation(userId, values.firstName, values.lastName, values.description, values.occupation),
+      editUserMutation(userId, currentImageFile, values.firstName, values.lastName, values.description, values.occupation),
       {
         onSuccess(data) {
           queryClient.invalidateQueries('get-single-user');
@@ -57,6 +65,14 @@ export default function EditUserForm({
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
           return (
             <Form>
+              {
+              currentImage && <img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/>
+            }
+          <ImageInput
+            onSubmit={addImage}
+            previewVisible={false}
+            setFieldValue={setFieldValue}
+          />
               <TextInput
                 inputName="firstName"
                 placeholder='First Name'

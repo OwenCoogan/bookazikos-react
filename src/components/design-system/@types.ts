@@ -18,6 +18,7 @@ export type UserType = {
   role?: string;
   userProfile: UserProfileType
   posts: [];
+  comments?: [];
 }
 
 export type UserStateType = {

@@ -1,4 +1,3 @@
-import Form from '../../../../components/design-system/form/Form';
 import TextInput from '../../../../components/design-system/TextInput';
 import 'draft-js/dist/Draft.css';
 import axios from 'axios';
@@ -13,6 +12,9 @@ import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
 import ImageInput from '../../../../components/design-system/ImageInput';
 import { validationSchema } from './CreateFormPost.validation';
+import { Formik,Form } from 'formik';
+import { createPost } from '../../../../store/queries/posts/posts';
+import { useMutation, useQueryClient } from 'react-query';
 
 type PostPropType = {
   title: string;
@@ -35,8 +37,9 @@ function onKeyDown(e: any) {
 export default function CreatePostForm() {
   const userState = useRecoilState(userAtom)[0];
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
-  const [currentImageFile,setCurrentImageFile] = useState({});
+  const [currentImageFile,setCurrentImageFile] = useState(new File([""], "filename"));
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
@@ -46,7 +49,7 @@ export default function CreatePostForm() {
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
-    image : currentImageFile,
+    image: currentImageFile,
     };
   function setTags(tags: string[]) {
     initialValues.tags = tags
@@ -54,28 +57,37 @@ export default function CreatePostForm() {
   async function addImage({image, file}: {image: string, file: any}) {
     setCurrentImage(image)
     setCurrentImageFile(file)
-    console.log(file)
   }
-  return (
-    <>
-    <Form
-      submitMethod={(values : PostPropType ) => {
-        values.richContent = JSON.stringify(convertToRaw(editorState.getCurrentContent()));
-        axios.post(
-          'http://localhost:6950/posts/create-post',
-          values,
-        )
-          .then((res) => {
-            navigate('/drafts');
-            toast.success('Post created successfully & added to drafts');
 
-          })
-          .catch((err) => {
-            toast.error('Something went wrong');
-          });
-      }}
-      initialValues={initialValues}
-      validationSchema={validationSchema}
+  const mutation = useMutation(
+    (values:typeof initialValues) =>
+      createPost(values),
+      {
+        onSuccess(data) {
+          queryClient.invalidateQueries('get-all-posts');
+          toast.success('Created Post successfully');
+          navigate('/drafts');
+        },
+        onError(error: any) {
+          toast.error(error.message);
+        }
+      }
+  );
+
+
+  return (
+    <Formik
+         initialValues={initialValues}
+        validationSchema={validationSchema}
+         onSubmit={(values, actions) => {
+          values.image = currentImageFile;
+          console.log(values)
+          mutation.mutate(values)
+         }}
+       >
+        {({ errors, touched, isSubmitting, setFieldValue,values }) => {
+          return (
+    <Form
 
     >
       <div className='flex flex-col lg:flex-row'>
@@ -88,7 +100,7 @@ export default function CreatePostForm() {
             placeholder="Title"
             type="text"
             onChange={(event) => {
-              initialValues.title = event.target.value;
+              setFieldValue('title', event.target.value);
             }}
 
             onKeyDown={onKeyDown}
@@ -102,7 +114,7 @@ export default function CreatePostForm() {
             placeholder="content"
             type="content"
             onChange={(event) => {
-              initialValues.content = event.target.value;
+              setFieldValue('content', event.target.value);
             }}
             onKeyDown={onKeyDown}
           />
@@ -113,6 +125,7 @@ export default function CreatePostForm() {
           <ImageInput
             onSubmit={addImage}
             previewVisible={false}
+            setFieldValue={setFieldValue}
           />
         </div>
         <div
@@ -126,10 +139,16 @@ export default function CreatePostForm() {
           />
         </div>
       </div>
+      <button
+        type="submit"
+        className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'
+      >
+        Submit
+      </button>
     </Form>
-    </>
+    )}}
+    </Formik>
   );
 
 }
-
 

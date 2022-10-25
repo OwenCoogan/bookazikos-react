@@ -11,8 +11,8 @@ export const register = async (email: string, password: string , firstName:strin
   return response.data;
 }
 
-export const editUserMutation = async (id: string, firstName: string, lastName: string,occupation: string, description: string) => {
-  const { data: response } = await axios.post(`${baseUrl}${Endpoints.auth}/edit-user/${id}`, { firstName, lastName, occupation, description });
+export const editUserMutation = async (id: string,image:object, firstName: string, lastName: string,occupation: string, description: string) => {
+  const { data: response } = await axios.post(`${baseUrl}${Endpoints.auth}/edit-user/${id}`, { image,firstName, lastName, occupation, description });
   return response.data;
 }
 

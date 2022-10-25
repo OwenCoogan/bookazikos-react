@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
-export default function ImageInput({ onSubmit,previewVisible }: { onSubmit: (
+export default function ImageInput({ onSubmit,previewVisible, setFieldValue }: { onSubmit: (
   { image, file }: { image: string, file: any }
-) => void, previewVisible: boolean }) {
+) => void, previewVisible: boolean , setFieldValue: any}) {
   const [file, setFile] = useState("");
     function handleChange(e:any) {
         setFile(URL.createObjectURL(e.target.files[0]));
         const fileName = URL.createObjectURL(e.target.files[0])
+        setFieldValue('image', e.target.files[0]);
         console.log(e.target.files[0])
         onSubmit({
           image: fileName,
