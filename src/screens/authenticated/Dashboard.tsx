@@ -5,6 +5,7 @@ import PostListCard from '../../components/design-system/cards/post-list-card/Po
 import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAdminData } from '../../store/queries/users/auth';
+import DashboardCard from '../../components/design-system/cards/dashboard-card/DashboardCard';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
@@ -35,6 +36,7 @@ export default function Dashboard(){
               posts={posts ? posts : []}
             />
           </div>
+
         </div>
       </>
     )

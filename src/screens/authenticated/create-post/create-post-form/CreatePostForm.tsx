@@ -39,29 +39,24 @@ export default function CreatePostForm() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
-  const [currentImageFile,setCurrentImageFile] = useState(new File([""], "filename"));
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
+  const formData = new FormData();
   const initialValues : PostPropType  = {
     title: '',
     userId: userState.user.id,
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
-    image: currentImageFile,
+    image: formData,
     };
 
 
   const mutation = useMutation(
     (values:typeof initialValues) =>
       createPost({
-        title: values.title,
-        userId: values.userId,
-        content: values.content,
-        richContent: values.richContent,
-        image: values.image,
-        tags: values.tags,
+        ...values,
       }),
       {
         onSuccess(data) {
@@ -75,14 +70,11 @@ export default function CreatePostForm() {
         }
       }
   );
-
-
   return (
     <Formik
          initialValues={initialValues}
         validationSchema={validationSchema}
          onSubmit={(values, actions) => {
-          values.image = currentImageFile;
           console.log(values)
           mutation.mutate(values)
          }}
@@ -91,8 +83,8 @@ export default function CreatePostForm() {
 
         async function addImage({image, file}: {image: string, file: any}) {
           setCurrentImage(image)
-          setCurrentImageFile(file)
-          setFieldValue('image', file)
+          formData.append('image', file);
+          console.log(values)
         }
         function setTags(tags: string[]) {
           values.tags = tags
@@ -136,7 +128,6 @@ export default function CreatePostForm() {
           <ImageInput
             onSubmit={addImage}
             previewVisible={false}
-            setFieldValue={setFieldValue}
           />
         </div>
         <div

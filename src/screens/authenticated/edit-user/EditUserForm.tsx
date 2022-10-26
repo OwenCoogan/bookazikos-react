@@ -71,7 +71,6 @@ export default function EditUserForm({
           <ImageInput
             onSubmit={addImage}
             previewVisible={false}
-            setFieldValue={setFieldValue}
           />
               <TextInput
                 inputName="firstName"

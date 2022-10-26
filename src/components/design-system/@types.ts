@@ -31,9 +31,10 @@ export type PostTypes ={
   title: string;
   author: any;
   userId: string;
-  id: string;
+  id?: string;
   content: any;
-  createdAt: string;
+  createdAt?: string;
+  richContent?: [];
   image?: string;
   tags: string[];
 }

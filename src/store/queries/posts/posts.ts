@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { baseUrl, Endpoints } from '..';
+import { PostTypes } from '../../../components/design-system/@types';
+import { PostQueryTypes } from './@types';
 
 
 export const getPosts = async () => {
@@ -12,8 +14,22 @@ export const getPosts = async () => {
     return response.data
   }
 
-export const createPost = async (post: any) => {
-  const { data : response } = await axios.post(`${baseUrl}${Endpoints.posts}/create-post`, post);
+export const createPost = async ({
+  title,
+  content,
+  image,
+  userId,
+  richContent,
+  tags
+}:PostQueryTypes) => {
+  const { data : response } = await axios.post(`${baseUrl}${Endpoints.posts}/create-post`, {
+    title,
+    content,
+    image,
+    userId,
+    richContent,
+    tags
+  });
   return response.data;
 }
 
