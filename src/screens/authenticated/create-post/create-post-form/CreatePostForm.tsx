@@ -66,6 +66,7 @@ export default function CreatePostForm() {
       {
         onSuccess(data) {
           queryClient.invalidateQueries('get-all-posts');
+          console.log(data)
           toast.success('Created Post successfully');
           navigate('/drafts');
         },
