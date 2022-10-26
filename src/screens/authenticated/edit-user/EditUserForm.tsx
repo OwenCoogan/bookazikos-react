@@ -36,9 +36,8 @@ export default function EditUserForm({
     occupation: occupation || '',
   }
 
-  async function addImage({image, file}: {image: string, file: any}) {
-    setCurrentImage(image)
-    setCurrentImageFile(file)
+  async function addImage({image}: {image: string}) {
+    setCurrentImageFile(image)
   }
 
   const mutation = useMutation(

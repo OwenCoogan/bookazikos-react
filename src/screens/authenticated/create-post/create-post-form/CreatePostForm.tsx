@@ -39,17 +39,17 @@ export default function CreatePostForm() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
+  const [currentImageFile,setCurrentImageFile] = useState<File>();
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
-  const formData = new FormData();
   const initialValues : PostPropType  = {
     title: '',
     userId: userState.user.id,
     content: '',
     richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
-    image: formData,
+    image: currentImageFile,
     };
 
 
@@ -81,10 +81,9 @@ export default function CreatePostForm() {
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
 
-        async function addImage({image, file}: {image: string, file: any}) {
+        async function addImage({image}: {image: any}) {
           setCurrentImage(image)
-          formData.append('image', file);
-          console.log(values)
+          console.log(currentImage)
         }
         function setTags(tags: string[]) {
           values.tags = tags
