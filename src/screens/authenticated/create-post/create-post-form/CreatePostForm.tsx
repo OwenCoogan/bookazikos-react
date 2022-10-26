@@ -51,17 +51,18 @@ export default function CreatePostForm() {
     tags: [],
     image: currentImageFile,
     };
-  function setTags(tags: string[]) {
-    initialValues.tags = tags
-  }
-  async function addImage({image, file}: {image: string, file: any}) {
-    setCurrentImage(image)
-    setCurrentImageFile(file)
-  }
+
 
   const mutation = useMutation(
     (values:typeof initialValues) =>
-      createPost(values),
+      createPost({
+        title: values.title,
+        userId: values.userId,
+        content: values.content,
+        richContent: values.richContent,
+        image: values.image,
+        tags: values.tags,
+      }),
       {
         onSuccess(data) {
           queryClient.invalidateQueries('get-all-posts');
@@ -86,6 +87,15 @@ export default function CreatePostForm() {
          }}
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
+
+        async function addImage({image, file}: {image: string, file: any}) {
+          setCurrentImage(image)
+          setCurrentImageFile(file)
+          setFieldValue('image', file)
+        }
+        function setTags(tags: string[]) {
+          values.tags = tags
+        }
           return (
     <Form
 
