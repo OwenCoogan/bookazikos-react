@@ -37,7 +37,18 @@ export default function EditUserForm({
   }
 
   async function addImage({image}: {image: string}) {
+    setCurrentImage(image);
     setCurrentImageFile(image)
+  }
+  async function publishProfilePicture(image:any){
+    const formData = new FormData();
+    formData.append('image', image);
+    const response = await axios.post(`http://localhost:6950/auth/user/${userId}/profile/picture`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    });
+    return response.data;
   }
 
   const mutation = useMutation(
@@ -65,7 +76,17 @@ export default function EditUserForm({
           return (
             <Form>
               {
-              currentImage && <img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/>
+              currentImage && <><img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/><button
+                type="button"
+                className="bg-red-500 text-white px-4 py-2 rounded-md"
+                onClick={() => {
+                  publishProfilePicture(currentImageFile).then((data:any) => {
+                    toast.success('Image uploaded successfully');
+                  }
+                  )}}
+              >
+                Publish Picture</button></>
+
             }
           <ImageInput
             onSubmit={addImage}
