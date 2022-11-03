@@ -3,8 +3,6 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { UserType } from '../../components/design-system/@types'
 import SmallDataCard from '../../components/design-system/cards/small-data-card/SmallDataCard'
-import PostGalleryCard from '../../components/design-system/post-gallery/PostGalleryCard'
-import Tag from '../../components/design-system/tag/Tag'
 
 export default function UserProfile() {
   const { id } = useParams();
@@ -14,7 +12,6 @@ export default function UserProfile() {
     axios.get(`http://localhost:6950/auth/get-user/${id}`)
     .then((response) => {
       setUserProfile(response.data.data.data)
-      console.log(response.data.data.data)
     })
   }, [])
 

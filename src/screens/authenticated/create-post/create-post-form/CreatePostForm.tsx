@@ -59,9 +59,8 @@ export default function CreatePostForm() {
         ...values,
       }),
       {
-        onSuccess(data) {
+        onSuccess() {
           queryClient.invalidateQueries('get-all-posts');
-          console.log(data)
           toast.success('Created Post successfully');
           navigate('/drafts');
         },
@@ -74,7 +73,7 @@ export default function CreatePostForm() {
     <Formik
          initialValues={initialValues}
         validationSchema={validationSchema}
-         onSubmit={(values, actions) => {
+         onSubmit={(values) => {
           console.log(values)
           mutation.mutate(values)
          }}

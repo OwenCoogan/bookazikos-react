@@ -5,7 +5,6 @@ import ButtonLink from '../design-system/buttons/ButtonLink';
 
 export default function HeaderHero(){
 	const [ auth ] = useRecoilState(authAtom);
-	console.log(auth);
   return (
     <section>
 	<div className="bg-yellow-300 text-white py-20 align-center">

@@ -17,7 +17,6 @@ export default function TeamBanner() {
       axios.get('http://localhost:6950/team/get-users')
         .then((response) => {
           setTeam(response.data.data);
-          console.log(team)
         })
     }, []);
   return (

@@ -57,7 +57,6 @@ export default function CommentSection({
                 type="text"
                 onChange={(event) => {
                   setCommentContent(event.target.value);
-                  console.log(event.target.value);
                 }}
               />
           </div>

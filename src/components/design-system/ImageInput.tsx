@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 export default function ImageInput({ onSubmit,previewVisible }: { onSubmit: (
-  { image, file }: { image: string, file: any }
+  { image, file }: { image: string, file: File }
 ) => void, previewVisible: boolean }) {
   const [file, setFile] = useState("");
     function handleChange(e:any) {

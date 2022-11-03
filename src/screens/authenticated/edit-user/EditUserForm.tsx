@@ -27,7 +27,7 @@ export default function EditUserForm({
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
-  const [currentImageFile,setCurrentImageFile] = useState({});
+  const [currentImageFile,setCurrentImageFile] = useState<any>();
 
   const initialValues = {
     firstName: firstName || '',
@@ -36,13 +36,13 @@ export default function EditUserForm({
     occupation: occupation || '',
   }
 
-  async function addImage({image}: {image: string}) {
+  async function addImage({image,file}: {image:string,file:File}) {
     setCurrentImage(image);
-    setCurrentImageFile(image)
-  }
-  async function publishProfilePicture(image:any){
+    setCurrentImageFile(file)
     const formData = new FormData();
-    formData.append('image', image);
+    console.log(file)
+    formData.append('image', file);
+    console.log(formData.entries())
     const response = await axios.post(`http://localhost:6950/auth/user/${userId}/profile/picture`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
@@ -75,19 +75,6 @@ export default function EditUserForm({
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
           return (
             <Form>
-              {
-              currentImage && <><img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/><button
-                type="button"
-                className="bg-red-500 text-white px-4 py-2 rounded-md"
-                onClick={() => {
-                  publishProfilePicture(currentImageFile).then((data:any) => {
-                    toast.success('Image uploaded successfully');
-                  }
-                  )}}
-              >
-                Publish Picture</button></>
-
-            }
           <ImageInput
             onSubmit={addImage}
             previewVisible={false}

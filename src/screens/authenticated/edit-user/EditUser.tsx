@@ -7,7 +7,6 @@ import EditUserForm from './EditUserForm';
 export default function EditUser(){
   const userState = useRecoilState(userAtom)[0];
   const { data,isLoading } = useQuery('get-single-user', () => getUserInfoQuery(userState.user.id));
-  console.log(data)
   if(isLoading){
     return <div>Loading...</div>
   }
