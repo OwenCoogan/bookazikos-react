@@ -1,16 +1,12 @@
 import { useState } from 'react';
 
 export default function ImageInput({ onSubmit,previewVisible }: { onSubmit: (
-  { image, file }: { image: string, file: File }
+  {event}:{event:any}
 ) => void, previewVisible: boolean }) {
   const [file, setFile] = useState("");
     function handleChange(e:any) {
         setFile(URL.createObjectURL(e.target.files[0]));
-        const fileName = URL.createObjectURL(e.target.files[0])
-        onSubmit({
-          image: fileName,
-          file: e.target.files[0],
-        });
+        onSubmit(e);
     }
   return (
     <div className="flex flex-col justify-center items-center w-full">
@@ -20,10 +16,7 @@ export default function ImageInput({ onSubmit,previewVisible }: { onSubmit: (
             <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
             <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
         </div>
-        <input id="dropzone-file" type="file" className="hidden"
-        onChange={handleChange}
-        />
-        { previewVisible ===true && <img src={file} alt={file} className='w-20'/>}
+        <input id="file" name="file" type="file" onChange={handleChange} />
     </label>
 </div>
   )

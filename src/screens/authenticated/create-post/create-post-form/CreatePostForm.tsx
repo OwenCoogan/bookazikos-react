@@ -20,7 +20,7 @@ type PostPropType = {
   title: string;
   userId: string;
   content: any;
-  image?: any;
+  image?: {};
   tags : string[];
 
 }
@@ -38,7 +38,6 @@ export default function CreatePostForm() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
-  const [currentImageFile,setCurrentImageFile] = useState<File>();
   const [editorState, setEditorState] = useState(() =>
   EditorState.createEmpty()
   );
@@ -47,7 +46,7 @@ export default function CreatePostForm() {
     userId: userState.user.id,
     content: '',
     tags: [],
-    image: currentImageFile,
+    image: {},
     };
 
 
@@ -78,27 +77,25 @@ export default function CreatePostForm() {
         validationSchema={validationSchema}
          onSubmit={(values) => {
           console.log(values)
-          mutation.mutate({
-            title: values.title,
-            userId: values.userId,
-            content: values.content,
-            tags: values.tags,
-          })
+          mutation.mutate(values)
          }}
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
 
-        async function addImage({image}: {image: any}) {
-          setCurrentImage(image)
-          console.log(currentImage)
+        async function addImage(event:any) {
+          const file = event.target.files[0];
+          const objectURL = URL.createObjectURL(file);
+          const imageName = objectURL;
+          setCurrentImage(imageName);
+          setFieldValue('image', file);
         }
         function setTags(tags: string[]) {
           values.tags = tags
         }
           return (
-    <Form
+      <Form
 
-    >
+      >
       <div className='flex flex-col lg:flex-row'>
         <div
           className='flex flex-col w-full lg:w-1/3'

@@ -37,19 +37,8 @@ export default function EditUserForm({
     occupation: occupation || '',
   }
 
-  async function addImage({image,file}: {image:string,file:File}) {
-    setCurrentImage(image);
-    setCurrentImageFile(file)
-    const formData = new FormData();
-    console.log(file)
-    formData.append('image', file);
-    console.log(formData.entries())
-    const response = await axios.post(`http://localhost:6950/auth/user/${userId}/profile/picture`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    });
-    return response.data;
+  async function addImage(event:any ) {
+   return null
   }
 
   const mutation = useMutation(
@@ -74,7 +63,7 @@ export default function EditUserForm({
           mutation.mutate(values)
          }}
        >
-        {({ errors, touched, isSubmitting, setFieldValue,values }) => {
+        {({ touched, isSubmitting, setFieldValue,values }) => {
           return (
             <Form>
           <ImageInput
