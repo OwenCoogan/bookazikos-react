@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { authAtom, userAtom } from '../../../../store';
 import Avatar from '../../avatar/Avatar';
+import NumberBadge from '../../badge/NumberBadge';
 import DropdownButton from './DropdownButton';
 import DropdownLink from './DropdownLink';
 
@@ -67,11 +68,15 @@ function logout(){
 					link='/dashboard'
 					text='Dashboard'
 					 />
-					<DropdownLink
-					link='/drafts'
-					text='Drafts'
-					count={draftCount}
-					 />
+					<li>
+					<Link to="/drafts" className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+						<NumberBadge
+							number={draftCount}
+							color='primary'
+						/>
+						Drafts
+					</Link>
+    			</li>
 					<DropdownLink
 					icon='AiOutlineFileDone'
 					link='/posts'

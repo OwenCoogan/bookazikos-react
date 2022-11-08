@@ -22,7 +22,7 @@ export default function Form({
       enableReinitialize={true}
     >
       <FormikForm
-        className="w-full m-auto"
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
         {children}
         <button

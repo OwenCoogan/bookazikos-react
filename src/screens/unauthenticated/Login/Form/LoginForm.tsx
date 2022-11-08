@@ -2,6 +2,7 @@ import { useUserActions } from '../../../../store/actions/user.actions';
 import TextInput from '../../../../components/design-system/TextInput';
 import { Formik,Form } from 'formik';
 import { validationSchema } from './LoginForm.validation';
+import FormWrapper from '../../../../components/design-system/form/FormWrapper';
 
 type LoginFormInputType = {
   email : string;
@@ -17,6 +18,7 @@ export default function LoginForm(){
   }
   const userActions = useUserActions();
   return (
+    <FormWrapper>
     <Formik
          initialValues={initialValues}
         validationSchema={validationSchema}
@@ -61,4 +63,5 @@ export default function LoginForm(){
 )
 }}
 </Formik>
+</FormWrapper>
 )}

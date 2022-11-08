@@ -33,6 +33,7 @@ export default function PostPage() {
     publicationStatus: "",
     comments:[],
     tags: [],
+    richContent: {},
     author : {
       firstName: "",
       lastName: "",
@@ -45,9 +46,10 @@ export default function PostPage() {
   useEffect(() => {
     if(data){
       setPost(data);
+      console.log(data.richContent)
       setEditorState(EditorState.createWithContent(convertFromRaw(data.richContent)));
     }
-  });
+  }, [data]);
 
   return (
     <section className="bg-white dark:bg-gray-900 min-w-full max-w-1/2 p-10 m-auto flex flex-col gap-4 w-2xl w-full mb-4 md:mb-0 max-w-screen-md mx-auto relative">

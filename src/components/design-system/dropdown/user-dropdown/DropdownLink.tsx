@@ -20,13 +20,6 @@ export default function DropdownLink({
       <Link to={link} className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
 
         {
-          count &&
-          <NumberBadge
-            number={count}
-            color="primary"
-          />
-        }
-        {
         icon &&
           <Icon
             name={icon}

@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Formik,Form } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import FormWrapper from '../../../../components/design-system/form/FormWrapper';
 import TextInput from '../../../../components/design-system/TextInput';
 import { validationSchema } from './RegisterForm.validation';
 
@@ -39,6 +40,7 @@ export default function RegisterForm(){
       )
   }
   return (
+    <FormWrapper>
     <Formik
          initialValues={initialValues}
         validationSchema={validationSchema}
@@ -101,5 +103,6 @@ export default function RegisterForm(){
 }
 }
     </Formik>
+    </FormWrapper>
 )
 }

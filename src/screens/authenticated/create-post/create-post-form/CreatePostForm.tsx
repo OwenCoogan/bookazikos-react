@@ -20,7 +20,6 @@ type PostPropType = {
   title: string;
   userId: string;
   content: any;
-  richContent: any;
   image?: any;
   tags : string[];
 
@@ -47,7 +46,6 @@ export default function CreatePostForm() {
     title: '',
     userId: userState.user.id,
     content: '',
-    richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
     tags: [],
     image: currentImageFile,
     };
@@ -56,7 +54,12 @@ export default function CreatePostForm() {
   const mutation = useMutation(
     (values:typeof initialValues) =>
       createPost({
-        ...values,
+        title: values.title,
+        userId: values.userId,
+        content: values.content,
+        richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
+        image: values.image,
+        tags: values.tags,
       }),
       {
         onSuccess() {
@@ -75,7 +78,12 @@ export default function CreatePostForm() {
         validationSchema={validationSchema}
          onSubmit={(values) => {
           console.log(values)
-          mutation.mutate(values)
+          mutation.mutate({
+            title: values.title,
+            userId: values.userId,
+            content: values.content,
+            tags: values.tags,
+          })
          }}
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {

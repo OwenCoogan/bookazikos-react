@@ -4,5 +4,5 @@ export type PostQueryTypes = {
   content: any;
   image?: string;
   tags?: string[];
-  richContent?: [];
+  richContent?: string;
 }

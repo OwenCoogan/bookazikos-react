@@ -7,6 +7,7 @@ import { Formik,Form } from 'formik';
 import { editUserMutation } from '../../../store/queries/users/auth';
 import { useMutation, useQueryClient } from 'react-query';
 import ImageInput from '../../../components/design-system/ImageInput';
+import FormWrapper from '../../../components/design-system/form/FormWrapper';
 
 type EditUserPropType = {
   firstName?: string;
@@ -66,6 +67,7 @@ export default function EditUserForm({
       }
   );
   return (
+    <FormWrapper>
     <Formik
          initialValues={initialValues}
          onSubmit={(values, actions) => {
@@ -122,6 +124,7 @@ export default function EditUserForm({
         }}
 
     </Formik>
+    </FormWrapper>
   );
 
 }
