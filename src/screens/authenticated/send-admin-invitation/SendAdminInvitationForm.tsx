@@ -11,7 +11,6 @@ import { sendAdminInvitationMutation } from '../../../store/actions/send-emails/
 export default function SendAdminInvitationForm({
 }) {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const [email, setEmail] = useState('');
 
   const initialValues = {
@@ -19,10 +18,20 @@ export default function SendAdminInvitationForm({
   }
 
   const mutation = useMutation(
-    (values:any) =>
+    (values:typeof initialValues) =>
     sendAdminInvitationMutation({
       email: values.email
-    }),
+    },
+    ),
+    {
+      onSuccess(data) {
+        toast.success('Sent successfully to ' + email );
+        navigate('/dashboard');
+      },
+      onError(error: any) {
+        toast.error(error.message);
+      }
+    }
   )
 
   return (

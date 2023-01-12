@@ -12,7 +12,7 @@ export default function UnauthenticatedRoutes() {
   return (
 
     <Routes>
-      <Route path="/register" element={<Register />} />
+      <Route path="/register/:email/:id" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="*" element={<NotFoundPage/>} />

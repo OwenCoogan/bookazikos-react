@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { Formik,Form } from 'formik';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FormWrapper from '../../../../components/design-system/form/FormWrapper';
 import TextInput from '../../../../components/design-system/TextInput';
@@ -14,8 +14,10 @@ type RegisterFormInputType = {
 }
 
 export default function RegisterForm(){
+  let { email, token } = useParams();
+  console.log(email)
   const initialValues: RegisterFormInputType = {
-    email: '',
+    email: email || '',
     firstName: '',
     lastName: '',
     password: '',
