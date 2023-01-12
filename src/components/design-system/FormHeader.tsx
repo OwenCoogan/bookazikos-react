@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 
 type FormHeaderType = {
   title: string;
-  subtitle: string;
-  route: string;
+  subtitle?: string;
+  route?: string;
 }
 
 export default function FormHeader({
@@ -21,10 +21,13 @@ export default function FormHeader({
       <h2 className="text-4xl tracking-tight">
          {title}
       </h2>
-      <span className="text-sm">or <Link to={route} className="text-yellow-500">
-         {subtitle}
-      </Link>
-   </span>
+      {
+         subtitle && route && (
+            <span className="text-sm">or <Link to={route} className="text-yellow-500">
+               {subtitle}
+            </Link>
+         </span>)
+      }
 </div>
   )
 }

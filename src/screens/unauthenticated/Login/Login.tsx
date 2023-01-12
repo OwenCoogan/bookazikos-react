@@ -9,8 +9,6 @@ export default function Login(
     <div>
       <FormHeader
         title="Log into your account"
-        subtitle="Register for an account"
-        route="/register"
       />
       <LoginForm />
     </div>
