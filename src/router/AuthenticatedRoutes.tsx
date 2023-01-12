@@ -10,6 +10,7 @@ import CreatePost from '../screens/authenticated/create-post/CreatePost';
 import Home from '../screens/unauthenticated/Home';
 import DraftsList from '../screens/authenticated/DraftList';
 import About from '../screens/unauthenticated/About/About';
+import SendAdminInvitation from '../screens/authenticated/send-admin-invitation/SendAdminInvitation';
 
 export default function AuthenticatedRoutes() {
   return (
@@ -17,6 +18,7 @@ export default function AuthenticatedRoutes() {
     <Routes>
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/create-post" element={<CreatePost />} />
+      <Route path="/send-admin-invitation" element={<SendAdminInvitation />} />
       <Route path="/posts" element={<PostList />} />
       <Route path="/drafts" element={<DraftsList />} />
       <Route path="*" element={<NotFoundPage/>} />

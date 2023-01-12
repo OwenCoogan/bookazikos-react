@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAdminData } from '../../store/queries/users/auth';
 import DashboardCard from '../../components/design-system/cards/dashboard-card/DashboardCard';
+import { NavLink } from 'react-router-dom';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
@@ -35,6 +36,17 @@ export default function Dashboard(){
               title = "Latest Posts"
               posts={posts ? posts : []}
             />
+            <div>
+              <DashboardCard
+                title="Send Admin Email"
+                >
+                  <NavLink
+                    to="/send-admin-invitation"
+                  >
+                    Hello World
+                    </NavLink>
+                </DashboardCard>
+            </div>
           </div>
 
         </div>
