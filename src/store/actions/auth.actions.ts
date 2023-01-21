@@ -22,7 +22,7 @@ function useAuthActions () {
         }
         else{
           toast.error("Invitation invalid");
-          console.log(token)
+          navigate('/login')
         }
       })
     }
