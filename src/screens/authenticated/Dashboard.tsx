@@ -7,6 +7,8 @@ import { useQuery } from 'react-query';
 import { getAdminData } from '../../store/queries/users/auth';
 import DashboardCard from '../../components/design-system/cards/dashboard-card/DashboardCard';
 import { NavLink } from 'react-router-dom';
+import Button from '../../components/design-system/buttons/Button';
+import ButtonLink from '../../components/design-system/buttons/ButtonLink';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
@@ -30,23 +32,25 @@ export default function Dashboard(){
               title="Total Comments"
               displayValue={data?.numberOfComments}
             />
+
+            <DataCard
+              title="Total Pending Invitations"
+              displayValue={data?.adminInvitationsPending}
+            />
+                  <div
+                    className="flex flex-col items-center justify-center w-full h-full p-1"
+                  >
+                  <ButtonLink
+                    route="/send-admin-invitation"
+                    text="Send Admin Invitation"
+                  />
+                  </div>
           </div>
           <div className="mt-4 w-full grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
             <PostListCard
               title = "Latest Posts"
               posts={posts ? posts : []}
             />
-            <div>
-              <DashboardCard
-                title="Send Admin Email"
-                >
-                  <NavLink
-                    to="/send-admin-invitation"
-                  >
-                    Hello World
-                    </NavLink>
-                </DashboardCard>
-            </div>
           </div>
 
         </div>

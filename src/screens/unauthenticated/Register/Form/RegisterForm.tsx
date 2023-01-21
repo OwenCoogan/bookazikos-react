@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { Formik,Form } from 'formik';
+import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import FormWrapper from '../../../../components/design-system/form/FormWrapper';
 import TextInput from '../../../../components/design-system/TextInput';
+import { useAuthActions } from '../../../../store/actions/auth.actions';
 import { validationSchema } from './RegisterForm.validation';
 
 type RegisterFormInputType = {
@@ -14,8 +16,18 @@ type RegisterFormInputType = {
 }
 
 export default function RegisterForm(){
-  let { email, token } = useParams();
-  console.log(email)
+  const { validateAdminInvitation }= useAuthActions();
+  const { token, email } = useParams();
+  console.log(token, email)
+  useEffect(() => {
+    if (token && email) {
+      validateAdminInvitation({
+        email: email,
+        token: token
+      });
+    }
+    return
+  }, [email, token, validateAdminInvitation]);
   const initialValues: RegisterFormInputType = {
     email: email || '',
     firstName: '',

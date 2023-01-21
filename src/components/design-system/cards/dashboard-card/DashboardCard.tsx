@@ -9,11 +9,13 @@ export default function DashboardCard({
 }: DataCardPropsType) {
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
-      <div className="flex items-center">
+      <div className="flex items-center flex-col">
         <div className="flex-shrink-0">
             <h3 className="text-base font-normal text-gray-500">{title}</h3>
         </div>
+        <div>
         {children}
+        </div>
       </div>
   </div>
   )

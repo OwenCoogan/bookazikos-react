@@ -19,7 +19,7 @@ export default function DataCard({
      {
         calculatedValue && (
           <div className={`ml-5 w-0 flex items-center justify-end flex-1 text-${
-            calculatedValue < 0 ? 'amber' : 'green'
+            calculatedValue < 0 ? 'secondary' : 'primary'
           }-400 text-base font-bold`}>
             {calculatedValue + '%'}
             <svg className={`w-5 h-5 ${calculatedValue < 0 && "rotate-180"}`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
