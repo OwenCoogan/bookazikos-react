@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useQuery } from 'react-query';
 import Grid from '../../components/design-system/grid/Grid';
 import PostGalleryCard from '../../components/design-system/post-gallery/PostGalleryCard';
@@ -7,14 +8,15 @@ import VideoHero from '../../components/UI/VideoHero';
 import { getPosts } from '../../store/queries/posts/posts';
 
 export default function Home(){
+  const { t } = useTranslation();
   const { data } = useQuery('getPosts', getPosts);
   return (
     <div>
       <HeaderHero
       />
       <Grid
-        title="Latest Posts"
-        subtitle="Check out the latest posts"
+        title={t('home.latestPosts')}
+        subtitle={t('home.latestPostsSubtitle')}
       >
         {
           data && data.length >0 &&
