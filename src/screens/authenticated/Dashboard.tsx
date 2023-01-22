@@ -9,6 +9,7 @@ import DashboardCard from '../../components/design-system/cards/dashboard-card/D
 import { NavLink } from 'react-router-dom';
 import Button from '../../components/design-system/buttons/Button';
 import ButtonLink from '../../components/design-system/buttons/ButtonLink';
+import { Routes } from '../../@types';
 
 export default function Dashboard(){
     const posts = useRecoilValue(postListAtom);
@@ -41,7 +42,7 @@ export default function Dashboard(){
                     className="flex flex-col items-center justify-center w-full h-full p-1"
                   >
                   <ButtonLink
-                    route="/send-admin-invitation"
+                    route={Routes.sendAdminInvitation}
                     text="Send Admin Invitation"
                   />
                   </div>

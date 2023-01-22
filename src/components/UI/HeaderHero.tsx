@@ -1,6 +1,7 @@
 import { t } from 'i18next';
 import { useTranslation } from 'react-i18next';
 import { useRecoilState } from 'recoil';
+import { Routes } from '../../@types';
 import holdingHands from '../../ressources/image/holding_hands.jpeg';
 import { authAtom } from '../../store';
 import ButtonLink from '../design-system/buttons/ButtonLink';
@@ -16,11 +17,11 @@ export default function HeaderHero(){
 			<h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">{t('home.title')}</h1>
             {
 								auth === false ? <ButtonLink
-								route="/contact"
+								route={Routes.contact}
 								text="Contactez nous"
 							/> :
 							<ButtonLink
-								route="/dashboard"
+								route={Routes.dashboard}
 								text="Accéder au dashboard"
 							/>}
 

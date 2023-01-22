@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Routes } from '../../../@types';
 
 export type ButtonPropsType = {
   icon?: boolean,
   iconPosition?: 'left' | 'right',
   iconSize?: 'small' | 'medium' | 'large',
   text?: string,
-  route: string
+  route: Routes
 }
 
 export default function ButtonLink({
