@@ -1,16 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useRecoilState } from 'recoil'
 import {  userAtom } from '../../../store'
 import { UserType } from '../../../components/design-system/@types'
 import SmallDataCard from '../../../components/design-system/cards/small-data-card/SmallDataCard'
-import Tag from '../../../components/design-system/tag/Tag'
 
 export default function UserSettings() {
   const userId = useRecoilState(userAtom)[0].user.id
   const [userProfile, setUserProfile] = useState<UserType>()
-  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
     axios.get(`http://localhost:6950/auth/get-user/${userId}`)
@@ -18,7 +16,7 @@ export default function UserSettings() {
       setUserProfile(response.data.data)
       console.log(response.data.data)
     })
-  }, [])
+  }, [userId])
 
   return (
     <main className="profile-page">

@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
 import { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Form from '../../../components/design-system/form/Form';
@@ -8,8 +8,7 @@ import FormWrapper from '../../../components/design-system/form/FormWrapper';
 import TextInput from '../../../components/design-system/TextInput';
 import { sendAdminInvitationMutation } from '../../../store/actions/send-emails/admin-invitation';
 
-export default function SendAdminInvitationForm({
-}) {
+export default function SendAdminInvitationForm() {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
 

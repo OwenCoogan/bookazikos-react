@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { baseUrl, Endpoints } from '..';
-import { PostTypes } from '../../../components/design-system/@types';
 import { PostQueryTypes } from './@types';
 
 

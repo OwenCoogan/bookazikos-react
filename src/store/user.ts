@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { UserStateType, UserType } from '../components/design-system/@types';
+import { UserStateType } from '../components/design-system/@types';
 
 
 const userAtom = atom<UserStateType>({

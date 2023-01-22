@@ -13,7 +13,7 @@ export default function UserProfile() {
     .then((response) => {
       setUserProfile(response.data.data.data)
     })
-  }, [])
+  }, [id])
 
   return (
     <main className="profile-page">

@@ -1,6 +1,5 @@
 import TextInput from '../../../../components/design-system/TextInput';
 import 'draft-js/dist/Draft.css';
-import axios from 'axios';
 import { userAtom } from '../../../../store';
 import { useRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';

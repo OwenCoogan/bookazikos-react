@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { draftListAtom, postListAtom } from '../post';
 
 
 function usePostActions () {
     const baseUrl = `http://localhost:6950/posts`;
-    const [postList,setPostList] = useRecoilState(postListAtom);
-    const [draftList,setDraftList] = useRecoilState(draftListAtom);
+    const [,setPostList] = useRecoilState(postListAtom);
+    const [,setDraftList] = useRecoilState(draftListAtom);
 
 
     return {

@@ -1,13 +1,9 @@
 import { useRecoilValue } from 'recoil';
-import { draftListAtom, postListAtom } from '../../store/post';
+import { postListAtom } from '../../store/post';
 import DataCard from '../../components/design-system/cards/data-card/DataCard';
 import PostListCard from '../../components/design-system/cards/post-list-card/PostListCard';
-import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { getAdminData } from '../../store/queries/users/auth';
-import DashboardCard from '../../components/design-system/cards/dashboard-card/DashboardCard';
-import { NavLink } from 'react-router-dom';
-import Button from '../../components/design-system/buttons/Button';
 import ButtonLink from '../../components/design-system/buttons/ButtonLink';
 import { Routes } from '../../@types';
 

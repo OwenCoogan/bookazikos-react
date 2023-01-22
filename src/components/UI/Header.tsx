@@ -1,12 +1,11 @@
 import { useQuery } from 'react-query';
-import { Link, useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { Link } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import logo from '../../ressources/image/logo.jpeg';
-import { authAtom, userAtom } from '../../store';
+import { userAtom } from '../../store';
 import { getAdminData } from '../../store/queries/users/auth';
-import Button from '../design-system/buttons/Button';
-import DropdownLink from '../design-system/dropdown/user-dropdown/DropdownLink';
 import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
+import LanguageSwitch from '../design-system/language-swtch/LanguageSwitch';
 
 type HeaderProps = {
   authenticated: boolean,
@@ -17,9 +16,7 @@ type HeaderProps = {
 export default function Header({
   authenticated
 }:HeaderProps){
-  const navigate = useNavigate();
   const user = useRecoilState(userAtom)[0].user;
-  const setUser = useSetRecoilState(userAtom);
   const {data} = useQuery('get', getAdminData);
   return (
     <>
@@ -31,7 +28,7 @@ export default function Header({
                 </Link>
                 <div className="flex items-center lg:order-2">
 
-
+                      <LanguageSwitch/>
                     {
                       authenticated === false && (
 <>
