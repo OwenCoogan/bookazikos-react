@@ -8,11 +8,12 @@ import { toast } from 'react-toastify';
 import Button from '../../components/design-system/buttons/Button';
 import CommentSection from '../../components/UI/comment-section/CommentSection';
 import { getPost } from '../../store/queries/posts/posts';
-import { useQuery } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import PostHeader from '../../components/design-system/post-header/PostHeader';
 export default function PostPage() {
 
   const newEditor = EditorState.createEmpty();
+  const queryClient = useQueryClient();
   const [editorState, setEditorState] = useState(newEditor);
 
   function publishProgram(){
@@ -22,6 +23,7 @@ export default function PostPage() {
     .then((response) => {
       console.log(response);
       toast.success("Post published successfully");
+      queryClient.invalidateQueries('get-single-post');
     })
   }
 

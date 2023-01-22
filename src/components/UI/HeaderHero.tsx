@@ -22,7 +22,7 @@ export default function HeaderHero(){
 							/> :
 							<ButtonLink
 								route={Routes.dashboard}
-								text="Accéder au dashboard"
+								text={t('home.dashboard-link')}
 							/>}
 
 			</div>

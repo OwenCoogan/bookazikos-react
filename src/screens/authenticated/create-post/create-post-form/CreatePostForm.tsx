@@ -1,28 +1,15 @@
 import TextInput from '../../../../components/design-system/TextInput';
 import 'draft-js/dist/Draft.css';
-import { userAtom } from '../../../../store';
-import { useRecoilState } from 'recoil';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { useState } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { convertToRaw, EditorState } from 'draft-js';
 import TagsInput from '../../../../components/design-system/TagsInput';
 import ImageInput from '../../../../components/design-system/ImageInput';
 import { validationSchema } from './CreateFormPost.validation';
 import { Formik,Form } from 'formik';
-import { createPost } from '../../../../store/queries/posts/posts';
-import { useMutation, useQueryClient } from 'react-query';
+import { PostPropType } from '../CreatePost';
+import { useRecoilState } from 'recoil';
+import { userAtom } from '../../../../store';
 
-type PostPropType = {
-  title: string;
-  userId: string;
-  content: any;
-  image?: {};
-  tags : string[];
-
-}
 
 function onKeyDown(e: any) {
   if (e.key === 'Enter') {
@@ -30,53 +17,33 @@ function onKeyDown(e: any) {
   }
 }
 
+type CreatePostFormPropTypes = {
+  onSubmit: any
+}
 
 
-export default function CreatePostForm() {
+
+export default function CreatePostForm({
+  onSubmit,
+}: CreatePostFormPropTypes) {
+
   const userState = useRecoilState(userAtom)[0];
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const [currentImage,setCurrentImage] = useState("");
-  const [editorState, setEditorState] = useState(() =>
-  EditorState.createEmpty()
-  );
   const initialValues : PostPropType  = {
     title: '',
-    userId: userState.user.id,
     content: '',
+    userId: userState.user.id,
     tags: [],
     image: {},
     };
 
-
-  const mutation = useMutation(
-    (values:typeof initialValues) =>
-      createPost({
-        title: values.title,
-        userId: values.userId,
-        content: values.content,
-        richContent: JSON.stringify(convertToRaw(editorState.getCurrentContent())),
-        image: values.image,
-        tags: values.tags,
-      }),
-      {
-        onSuccess() {
-          queryClient.invalidateQueries('get-all-posts');
-          toast.success('Created Post successfully');
-          navigate('/drafts');
-        },
-        onError(error: any) {
-          toast.error(error.message);
-        }
-      }
-  );
   return (
     <Formik
          initialValues={initialValues}
         validationSchema={validationSchema}
          onSubmit={(values) => {
           console.log(values)
-          mutation.mutate(values)
+          onSubmit(values)
          }}
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
@@ -93,11 +60,11 @@ export default function CreatePostForm() {
         }
           return (
       <Form
-
+        className='flex flex-col w-3/5 m-auto bg-white p-2'
       >
       <div className='flex flex-col lg:flex-row'>
         <div
-          className='flex flex-col w-full lg:w-1/3'
+          className='flex flex-col w-full'
         >
           <TextInput
             label="Title"
@@ -132,20 +99,10 @@ export default function CreatePostForm() {
             previewVisible={false}
           />
         </div>
-        <div
-          className='lg:mx-auto justify-center items-center lg:w-1/2 h-96'
-        >
-          <Editor
-            editorState={editorState}
-            wrapperClassName="wrapperClassName"
-            editorClassName="editorClassName"
-            onEditorStateChange={setEditorState}
-          />
-        </div>
       </div>
       <button
         type="submit"
-        className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded'
+        className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded w-1/4 lg:m-auto'
       >
         Submit
       </button>
