@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import { useQuery } from 'react-query';
 import { Link } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -6,6 +7,7 @@ import { userAtom } from '../../store';
 import { getAdminData } from '../../store/queries/users/auth';
 import UserDropdown from '../design-system/dropdown/user-dropdown/UserDropdown';
 import LanguageSwitch from '../design-system/language-swtch/LanguageSwitch';
+import Text from '../design-system/Text';
 
 type HeaderProps = {
   authenticated: boolean,
@@ -32,7 +34,10 @@ export default function Header({
                     {
                       authenticated === false && (
 <>
-                       <Link to="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 mr-4">Contact</Link>
+                       <Link to="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 mr-4"><Text
+                        text={t("home.contact-us")}
+                        variant='navlink'
+                       /></Link>
                         <Link to="/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</Link></>
                       )
                     }

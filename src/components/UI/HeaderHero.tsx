@@ -18,7 +18,7 @@ export default function HeaderHero(){
             {
 								auth === false ? <ButtonLink
 								route={Routes.contact}
-								text="Contactez nous"
+								text={t('home.contact-us')}
 							/> :
 							<ButtonLink
 								route={Routes.dashboard}
