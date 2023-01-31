@@ -16,5 +16,15 @@
   "home.contact-us": "Contactanos",
   "home.latestPosts": "Ultimos Posts",
   "home.dashboard-link": "Ir a el Dashboard",
-  "home.latestPostsSubtitle": "Ultimos Posts de Crece en Libertad"
+  "home.latestPostsSubtitle": "Ultimos Posts de Crece en Libertad",
+
+
+  "dashboard.name": "Dashboard",
+  "dashboard.title": "Dashboard",
+  "dashboard.total-posts": "Total Posts",
+  "dashboard.total-users": "Total Usuarios",
+  "dashboard.total-comments": "Total Commentarios",
+  "dashboard.total-admin-invitations": "Total Invitaciones de Administradores",
+  "dashboard.latest-posts": "Ultimos Posts",
+  "dashboard.send-admin-invitation": "Enviar Invitaciones de Administrador"
 }

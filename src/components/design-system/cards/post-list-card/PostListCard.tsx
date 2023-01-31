@@ -1,14 +1,17 @@
+import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import PostListCardItem from './PostListCardItem';
 
 export default function PostListCard(
    posts:any,
 ) {
+   const { t   } = useTranslation();
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">
                         <div>
-                           <h3 className="text-xl font-bold text-gray-900 mb-2">Latest Posts</h3>
+                           <h3 className="text-xl font-bold text-gray-900 mb-2">{t("dashboard.latest-posts")}</h3>
                         </div>
                         <div className="flex-shrink-0">
                            <Link to="/posts" className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</Link>

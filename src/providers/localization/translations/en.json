@@ -7,5 +7,13 @@
   "home.title": "azeaze",
   "home.contact-us": "Contact Us",
   "home.latestPosts": "Latest Posts",
-  "home.latestPostsSubtitle": "Latest Posts de Crece en Libertad"
+  "home.latestPostsSubtitle": "Latest Posts de Crece en Libertad",
+
+  "dashboard.name": "Dashboard",
+  "dashboard.title": "Dashboard",
+  "dashboard.total-posts": "Total Posts",
+  "dashboard.total-users": "Total Users",
+  "dashboard.total-comments": "Total Comments",
+  "dashboard.total-admin-invitations": "Total Admin Invitations",
+  "dashboard.latest-posts": "Latest Posts"
 }
