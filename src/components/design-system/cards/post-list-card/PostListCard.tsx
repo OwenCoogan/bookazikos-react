@@ -6,7 +6,7 @@ import PostListCardItem from './PostListCardItem';
 export default function PostListCard(
    posts:any,
 ) {
-   const { t   } = useTranslation();
+   const { t} = useTranslation();
   return (
     <div className="bg-white shadow rounded-lg p-4 sm:p-6 xl:p-8 ">
                      <div className="mb-4 flex items-center justify-between">
@@ -14,7 +14,7 @@ export default function PostListCard(
                            <h3 className="text-xl font-bold text-gray-900 mb-2">{t("dashboard.latest-posts")}</h3>
                         </div>
                         <div className="flex-shrink-0">
-                           <Link to="/posts" className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">View all</Link>
+                           <Link to="/posts" className="text-sm font-medium text-cyan-600 hover:bg-gray-100 rounded-lg p-2">{t("list.view-all")}</Link>
                         </div>
                      </div>
                      <div className="flex flex-col mt-8">
@@ -25,13 +25,13 @@ export default function PostListCard(
                                     <thead className="bg-gray-50">
                                        <tr>
                                           <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                             Title
+                                             {t("list.title")}
                                           </th>
                                           <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                             Author
+                                             {t("list.author")}
                                           </th>
                                           <th scope="col" className="p-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                             Date
+                                             {t("list.date")}
                                           </th>
                                        </tr>
                                     </thead>

@@ -26,5 +26,10 @@
   "dashboard.total-comments": "Total Commentarios",
   "dashboard.total-admin-invitations": "Total Invitaciones de Administradores",
   "dashboard.latest-posts": "Ultimos Posts",
-  "dashboard.send-admin-invitation": "Enviar Invitaciones de Administrador"
+  "dashboard.send-admin-invitation": "Enviar Invitaciones de Administrador",
+
+  "list.view-all": "Ver Todos",
+  "list.title": "Post",
+  "list.author": "Autor",
+  "list.date": "Fecha"
 }
