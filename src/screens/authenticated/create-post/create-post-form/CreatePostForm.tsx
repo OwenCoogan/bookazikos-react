@@ -18,7 +18,7 @@ function onKeyDown(e: any) {
 }
 
 type CreatePostFormPropTypes = {
-  onSubmit: any
+  onSubmit: (values: PostPropType) => void;
 }
 
 
@@ -34,7 +34,7 @@ export default function CreatePostForm({
     content: '',
     userId: userState.user.id,
     tags: [],
-    image: {},
+    image: currentImage,
     };
 
   return (
@@ -60,7 +60,7 @@ export default function CreatePostForm({
         }
           return (
       <Form
-        className='flex flex-col w-3/5 m-auto bg-white p-2'
+        className='flex flex-col w-3/5 m-auto mt-0 bg-white p-2'
       >
       <div className='flex flex-col lg:flex-row'>
         <div
@@ -90,10 +90,7 @@ export default function CreatePostForm({
             }}
             onKeyDown={onKeyDown}
           />
-             <h2 className="text-center mb-4">Uploaded Image</h2>
-            {
-              currentImage && <img src={currentImage} alt={currentImage} className="w-20 mx-auto mb-4"/>
-            }
+            <h2 className="text-center mb-4">Uploaded Image</h2>
           <ImageInput
             onSubmit={addImage}
             previewVisible={false}

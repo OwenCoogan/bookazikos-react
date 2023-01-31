@@ -1,4 +1,3 @@
-import { convertToRaw, EditorState } from 'draft-js';
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +15,7 @@ export type PostPropType = {
   title: string;
   userId: string;
   content: any;
-  image?: {};
+  image?: string;
   tags : string[];
   richContent?: string;
 
@@ -29,12 +28,12 @@ export default function CreatePost(){
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [content, setContent] = useState<any>([]);
-  const [post, setPost] = useState({
+  const [post, setPost] = useState<PostPropType>({
     title: '',
     userId: userState.user.id,
     content: '',
     tags: [],
-    image: {},
+    image: "",
   });
 
   const mutation = useMutation(
@@ -61,13 +60,8 @@ export default function CreatePost(){
 
   return (
   <div
-    className='p-10 m-auto bg-gray-50'
+    className='p-10 pt-4 m-auto bg-gray-50'
   >
-  <h2
-    className='text-2xl font-bold text-center mb-10'
-  >
-    Create Post
-  </h2>
   <Stepper
     activeStep={currentStep}
     limit={3}
@@ -78,14 +72,14 @@ export default function CreatePost(){
   >
 
 
-  <ReviewPostForm
+    <ReviewPostForm
     post={post}
     onSubmit={()=> mutation.mutate(post)}
   />
   {
     currentStep === 0 && (
       <CreatePostForm
-        onSubmit={(values:any) => {
+        onSubmit={(values:PostPropType) => {
           setCurrentStep(1);
           setPost(values)
         }}

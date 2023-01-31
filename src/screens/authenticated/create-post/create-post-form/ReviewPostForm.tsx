@@ -5,7 +5,7 @@ import { PostPropType } from '../CreatePost';
 export function ReviewPostForm({post,onSubmit}: {post:PostPropType,onSubmit:() => void} ){
   return (
     <div
-      className='bg-white p-8 w-1/5 m-auto h-screen flex flex-col justify-center items-center'
+      className='bg-white p-8 m-auto h-screen flex flex-col justify-center items-center'
     >
       <Text
         additionalClasses='text-2xl font-bold'
@@ -16,6 +16,7 @@ export function ReviewPostForm({post,onSubmit}: {post:PostPropType,onSubmit:() =
         text={post.content ? post.content : 'No content'}
         variant='body'
       />
+      {JSON.stringify(post)}
       <img src={post.image ? "": ""} alt='post' />
       <Button
         onClick={onSubmit}
