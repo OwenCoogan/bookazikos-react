@@ -35,11 +35,11 @@ export default function Header({
                       authenticated === false && (
 <>
                        <Link to="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-800 dark:hover:text-gray-100 mr-4"><Text
-                        text={t("home.contact-us")}
+                        text={t("navigation.contact-us")}
                         variant='navlink'
                        /></Link>
                         <Link to="/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"><Text
-                        text={t("home.login")}
+                        text={t("navigation.login")}
                         variant='navlink'
                         /></Link></>
                       )
@@ -66,17 +66,26 @@ export default function Header({
                     </button>
                 </div>
                 <div className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1" id="mobile-menu-2">
-                    <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
+                    <ul className="flex flex-col font-medium lg:flex-row lg:space-x-8 w-full">
                       {
                         authenticated === true && (
                         <>
-                          <li>
+                          <li
+                          >
                             <Link to="/create-post">
-                              Create Post
+                              <Text
+                                variant='navlink'
+                                text={t("navigation.create-post")}
+                              />
                             </Link>
                           </li>
                           <li>
-                          <Link to="/dashboard" className="block py-2 pr-4 pl-3 text-white rounded bg-yellow-700 lg:bg-transparent lg:text-yellow-700 lg:p-0 dark:text-white" aria-current="page">Dashboard</Link>
+                          <Link to="/dashboard" className="block py-2 pl-3 text-white rounded bg-yellow-700 lg:bg-transparent lg:text-yellow-700 lg:p-0 dark:text-white" aria-current="page">
+                            <Text
+                              variant='navlink'
+                              text={t("navigation.dashboard")}
+                            />
+                          </Link>
                           </li>
                         </>
                         )
@@ -85,7 +94,11 @@ export default function Header({
                         <Link
                           to="/about"
                         >
-                          About
+                          <Text
+                            additionalClasses='lg:mr-0 lg:pr-0'
+                            variant='navlink'
+                            text={t("navigation.about")}
+                          />
                         </Link>
                       </li>
                     </ul>

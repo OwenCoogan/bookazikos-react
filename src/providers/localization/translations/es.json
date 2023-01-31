@@ -3,10 +3,17 @@
   "languages.es": "Español",
   "languages.fr": "Francés",
 
+  "navigation.home": "Inicio",
+  "navigation.about": "Sobre Nosotros",
+  "navigation.blog": "Blog",
+  "navigation.contact-us": "Contacto",
+  "navigation.create-post": "Crear Post",
+  "navigation.dashboard": "Dashboard",
+  "navigation.login": "Iniciar Sesión",
 
   "home.name": "Crece en Libertad",
   "home.title": "Trabaramos por la equalidad de los niños y ninas",
-  "home.contact-us": "Contact Us",
+  "home.contact-us": "Contactanos",
   "home.latestPosts": "Ultimos Posts",
   "home.dashboard-link": "Ir a el Dashboard",
   "home.latestPostsSubtitle": "Ultimos Posts de Crece en Libertad"
