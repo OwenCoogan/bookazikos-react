@@ -10,12 +10,13 @@ import WritePostForm from './create-post-form/WritePostForm';
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import Stepper from '../../../components/design-system/stepper/Stepper';
 import { ReviewPostForm } from './create-post-form/ReviewPostForm';
+import UploadCoverForm from './create-post-form/UploadCoverForm';
 
 export type PostPropType = {
   title: string;
   userId: string;
   content: any;
-  image?: string;
+  image?: File;
   tags : string[];
   richContent?: string;
 
@@ -28,12 +29,13 @@ export default function CreatePost(){
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [content, setContent] = useState<any>([]);
+  const [image, setImage] = useState<File | undefined>(undefined);
   const [post, setPost] = useState<PostPropType>({
     title: '',
     userId: userState.user.id,
     content: '',
     tags: [],
-    image: "",
+    image: image,
   });
 
   const mutation = useMutation(
@@ -74,13 +76,16 @@ export default function CreatePost(){
 
     <ReviewPostForm
     post={post}
-    onSubmit={()=> mutation.mutate(post)}
+    image={image}
+    onSubmit={()=> {
+      mutation.mutate(post)}}
   />
   {
     currentStep === 0 && (
       <CreatePostForm
         onSubmit={(values:PostPropType) => {
           setCurrentStep(1);
+          console.log(post)
           setPost(values)
         }}
       />)
@@ -91,7 +96,19 @@ export default function CreatePost(){
   <WritePostForm
     onSubmit={(values:any) => {
       setCurrentStep(2);
+      console.log(post)
       setContent(values)
+    }}
+  />)
+  }
+  {
+    currentStep === 2 && (
+
+  <UploadCoverForm
+    onSubmit={(values:any) => {
+      setCurrentStep(3);
+      setImage(values)
+      console.log(image)
     }}
   />)
   }

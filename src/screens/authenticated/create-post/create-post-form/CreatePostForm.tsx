@@ -28,13 +28,12 @@ export default function CreatePostForm({
 }: CreatePostFormPropTypes) {
 
   const userState = useRecoilState(userAtom)[0];
-  const [currentImage,setCurrentImage] = useState("");
   const initialValues : PostPropType  = {
     title: '',
     content: '',
     userId: userState.user.id,
     tags: [],
-    image: currentImage,
+    image: undefined,
     };
 
   return (
@@ -48,13 +47,6 @@ export default function CreatePostForm({
        >
         {({ errors, touched, isSubmitting, setFieldValue,values }) => {
 
-        async function addImage(event:any) {
-          const file = event.target.files[0];
-          const objectURL = URL.createObjectURL(file);
-          const imageName = objectURL;
-          setCurrentImage(imageName);
-          setFieldValue('image', file);
-        }
         function setTags(tags: string[]) {
           values.tags = tags
         }
@@ -89,11 +81,6 @@ export default function CreatePostForm({
               setFieldValue('content', event.target.value);
             }}
             onKeyDown={onKeyDown}
-          />
-            <h2 className="text-center mb-4">Uploaded Image</h2>
-          <ImageInput
-            onSubmit={addImage}
-            previewVisible={false}
           />
         </div>
       </div>
