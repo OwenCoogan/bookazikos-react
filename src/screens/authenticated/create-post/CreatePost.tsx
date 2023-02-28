@@ -29,13 +29,11 @@ export default function CreatePost(){
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [content, setContent] = useState<any>([]);
-  const [image, setImage] = useState<File | undefined>(undefined);
   const [post, setPost] = useState<PostPropType>({
     title: '',
     userId: userState.user.id,
     content: '',
     tags: [],
-    image: image,
   });
 
   const mutation = useMutation(
@@ -76,7 +74,7 @@ export default function CreatePost(){
 
     <ReviewPostForm
     post={post}
-    image={image}
+    image={post.image}
     onSubmit={()=> {
       mutation.mutate(post)}}
   />
@@ -106,9 +104,8 @@ export default function CreatePost(){
 
   <UploadCoverForm
     onSubmit={(values:any) => {
-      setCurrentStep(3);
-      setImage(values)
-      console.log(image)
+      setPost({...post, image: values})
+      console.log(post.image)
     }}
   />)
   }

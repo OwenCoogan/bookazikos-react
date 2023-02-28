@@ -26,23 +26,19 @@ export default function EditUserForm({
 }:EditUserPropType) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const [currentImage,setCurrentImage] = useState("");
-  const [currentImageFile,setCurrentImageFile] = useState<any>();
 
   const initialValues = {
     firstName: firstName || '',
     lastName: lastName || '',
     description: description || '',
     occupation: occupation || '',
+    image:  {} as File,
   }
 
-  async function addImage(event:any ) {
-   return null
-  }
 
   const mutation = useMutation(
     (values:typeof initialValues) =>
-      editUserMutation(userId, currentImageFile, values.firstName, values.lastName, values.description, values.occupation),
+      editUserMutation(userId, values.image , values.firstName, values.lastName, values.description, values.occupation),
       {
         onSuccess(data) {
           queryClient.invalidateQueries('get-single-user');
@@ -65,10 +61,15 @@ export default function EditUserForm({
         {({ touched, isSubmitting, setFieldValue,values }) => {
           return (
             <Form>
-          <ImageInput
-            onSubmit={addImage}
-            previewVisible={false}
-          />
+              <input
+                type="file"
+                name="myImage"
+                onChange={(event) => {
+
+                  setFieldValue("image",event.target.files![0]);
+                  console.log(values)
+                }}
+              />
               <TextInput
                 inputName="firstName"
                 placeholder='First Name'
