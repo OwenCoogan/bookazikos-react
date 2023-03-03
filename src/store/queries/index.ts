@@ -1,4 +1,4 @@
-export const baseUrl = 'http://localhost:6950';
+export const baseUrl = process.env.NODE_ENV === 'production' ? process.env.REACT_APP_BACKEND_URL_PRODUCTION: process.env.REACT_APP_BACKEND_URL;
 
 export enum Endpoints {
   posts = '/posts',
