@@ -9,6 +9,14 @@
   "home.latestPosts": "Derniers Posts",
   "home.latestPostsSubtitle": "Derniers Posts de Crece en Libertad",
 
+  "navigation.home": "Accueil",
+  "navigation.about": "À propos",
+  "navigation.blog": "Blog",
+  "navigation.contact-us": "Contactez-nous",
+  "navigation.create-post": "Créer un Post",
+  "navigation.dashboard": "Dashboard",
+  "navigation.login": "Login",
+
   "video-hero.title": "Projet pour l'égalité des enfants",
   "video-hero.subtitle": "Nous travaillons pour l’égalité fille garçon",
   "video-hero.button": "En savoir plus",
@@ -38,6 +46,18 @@
   "list.author": "Auteur",
   "list.date": "Date",
 
-  "team-section.title": "Notre équipe"
+  "team-section.title": "Notre équipe",
+
+  "footer.association": "L'association",
+  "footer.about": "À propos",
+  "footer.blog": "Blog",
+  "footer.contact": "Contact",
+  "footer.contact-page": "Contactez-nous",
+
+  "contact-form.title": "Contactez-nous",
+  "contact-form.email-label": "Email",
+  "contact-form.message-label": "Message",
+  "contact-form.message-placeholder": "Votre message",
+  "contact-form.submit": "Envoyer"
 
 }
