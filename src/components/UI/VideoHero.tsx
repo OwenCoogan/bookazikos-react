@@ -1,6 +1,8 @@
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
 export default function VideoHero() {
+	const {t}= useTranslation();
   return (
     <section>
 	<div className="bg-black text-white py-20">
@@ -17,14 +19,13 @@ export default function VideoHero() {
 				</div>
 			</div>
 			<div className="flex flex-col w-full lg:w-1/3 justify-center items-start p-8">
-				<h1 className="text-3xl md:text-5xl p-2 text-yellow-300 tracking-loose">Tequila</h1>
-				<h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">Un projet pour l'égalité fille garçon
+				<h1 className="text-3xl md:text-5xl p-2 text-primary-300 tracking-loose">Tequila</h1>
+				<h2 className="text-3xl md:text-5xl leading-relaxed md:leading-snug mb-2">{t('video-hero.title')}
 				</h2>
-				<p className="text-sm md:text-base text-gray-50 mb-4">Explore your favourite events and
-					register now to showcase your talent and win exciting prizes.</p>
+				<p className="text-sm md:text-base text-gray-50 mb-4">{t('video-hero.subtitle')}</p>
 				<Link to="#"
-					className="bg-transparent hover:bg-yellow-300 text-yellow-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-yellow-300 hover:border-transparent">
-					Explore Now</Link>
+					className="bg-transparent hover:bg-primary-300 text-primary-300 hover:text-black rounded shadow hover:shadow-lg py-2 px-4 border border-primary-300 hover:border-transparent">
+					{t('video-hero.button')}</Link>
 			</div>
 
 		</div>

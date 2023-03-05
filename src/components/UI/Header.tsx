@@ -80,7 +80,7 @@ export default function Header({
                             </Link>
                           </li>
                           <li>
-                          <Link to="/dashboard" className="block py-2 pl-3 text-white rounded bg-yellow-700 lg:bg-transparent lg:text-yellow-700 lg:p-0 dark:text-white" aria-current="page">
+                          <Link to="/dashboard" className="block py-2 pl-3 text-white rounded bg-primary-700 lg:bg-transparent lg:text-primary-700 lg:p-0 dark:text-white" aria-current="page">
                             <Text
                               variant='navlink'
                               text={t("navigation.dashboard")}
