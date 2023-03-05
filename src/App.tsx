@@ -13,6 +13,7 @@ import { authAtom } from './store';
 import axios from 'axios';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Footer from './components/UI/Footer';
+import HeaderV2 from './components/UI/HeaderV2';
 
 function App() {
   const [ auth,setAuth ] = useRecoilState(authAtom);
@@ -35,7 +36,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
     <AuthorizationProvider>
       <BrowserRouter>
-      <Header
+      <HeaderV2
         authenticated={auth}
       />
         <ToastContainer
