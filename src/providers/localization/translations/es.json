@@ -39,6 +39,28 @@
 
   "team-section.title": "Nuestra Equipa",
 
+  "newsletter-section.title": "Suscribete a nuestro Newsletter",
+  "newsletter-section.subtitle": "Recibe las ultimas noticias de Crece en Libertad",
+  "newsletter-section.label": "Email",
+  "newsletter-section.subscribe": "Suscribirme",
+
+
   "about.association.title": "Nuestra Asociación",
-  "about.association.subtitle": "Crece en Libertad es una Organizacion No Gubernamental Francesa con vocación internacional y sin fines de lucro.  La asociación no está afiliada a ningún movimiento político ni creencia religiosa. Financiamos nuestras acciones gracias al apoyo y la generosidad de nuestros donantes. Esta independencia nos permite actuar con total libertad para llevar a cabo los proyectos con los que podemos acompañar a las niñeces y adolescentes"
+  "about.association.subtitle": "Crece en Libertad es una Organizacion No Gubernamental Francesa con vocación internacional y sin fines de lucro.  La asociación no está afiliada a ningún movimiento político ni creencia religiosa. Financiamos nuestras acciones gracias al apoyo y la generosidad de nuestros donantes. Esta independencia nos permite actuar con total libertad para llevar a cabo los proyectos con los que podemos acompañar a las niñeces y adolescentes",
+
+  "about.mission.title": "Nuestra Misión",
+  "about.mission.subtitle": " Acompañar a las niñeces y adolescentes a conocer y disfrutar de sus derechos a través de métodos de educación participativos como la educación artística, el juego y el deporte. El objetivo principal es la creación de espacios inclusivos donde se escuchen sus voces y se transformen en iniciativas con un enfoque de niñez, de género e intercultural",
+
+  "footer.association": "Asociación",
+  "footer.about": "Sobre Nosotros",
+  "footer.blog": "Blog",
+  "footer.contact": "Contacto",
+  "footer.contact-page": "Página de Contacto",
+
+  "contact-form.title": "Contacto",
+  "contact-form.email-label": "Email",
+  "contact-form.message-label": "Mensaje",
+  "contact-form.message-placeholder": "Escribe tu mensaje aquí",
+  "contact-form.submit": "Enviar"
+
 }

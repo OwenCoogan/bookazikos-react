@@ -7,5 +7,37 @@
   "home.contact-us": "Contact Us",
   "home.login": "Login",
   "home.latestPosts": "Derniers Posts",
-  "home.latestPostsSubtitle": "Derniers Posts de Crece en Libertad"
+  "home.latestPostsSubtitle": "Derniers Posts de Crece en Libertad",
+
+  "video-hero.title": "Projet pour l'égalité des enfants",
+  "video-hero.subtitle": "Nous travaillons pour l’égalité fille garçon",
+  "video-hero.button": "En savoir plus",
+
+  "newsletter-section.title": "Newsletter",
+  "newsletter-section.subtitle": "Inscrivez-vous à notre newsletter pour recevoir les dernières nouvelles et mises à jour.",
+  "newsletter-section.label": "Email",
+  "newsletter-section.subscribe": "S'inscrire",
+
+  "about.association.title": "L'association",
+  "about.association.subtitle": "Crece en Libertad est une Organisation Non Gouvernementale française à vocation internationale et à but non lucratif. L'association n'est affiliée à aucun mouvement politique ou confession religieuse. Nous finançons nos actions grâce au soutien et à la générosité de nos donateurs. Cette indépendance nous permet d'agir en toute liberté pour mener à bien les projets avec lesquels nous pouvons accompagner les enfants et les adolescents.",
+
+  "about.mission.title": "Notre mission",
+  "about.mission.subtitle": "Accompagner les enfants et les adolescents à connaître et à jouir de leurs droits grâce à des méthodes d'éducation participative telles que l'éducation artistique, les jeux et les sports. L'objectif principal est la création d'espaces inclusifs où leurs voix sont entendues et transformées en initiatives axées sur les enfants, le genre et l'interculturel.",
+
+  "dashboard.name": "Dashboard",
+  "dashboard.title": "Dashboard",
+  "dashboard.total-posts": "Total Posts",
+  "dashboard.total-users": "Nombre d'Utilisateurs",
+  "dashboard.total-comments": "Nombre de Commentaires",
+  "dashboard.total-admin-invitations": "Nombre d'Invitations d'Administrateur",
+  "dashboard.latest-posts": "Derniers Posts",
+  "dashboard.send-admin-invitation": "Envoyer une invitation d'administrateur",
+
+  "list.view-all": "Voir tout",
+  "list.title": "Titre",
+  "list.author": "Auteur",
+  "list.date": "Date",
+
+  "team-section.title": "Notre équipe"
+
 }
