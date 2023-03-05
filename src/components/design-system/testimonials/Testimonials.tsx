@@ -5,7 +5,7 @@ import 'react-awesome-slider/dist/styles.css';
 
 export default function Testimonials() {
   return (
-    <section className="bg-white dark:bg-gray-900">
+    <section className="bg-primary-200 dark:bg-gray-900">
     <Carousel wrapAround={true} slidesToShow={1} defaultControlsConfig={
       {
         nextButtonText: '>',

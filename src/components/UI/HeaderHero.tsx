@@ -11,7 +11,7 @@ export default function HeaderHero(){
 	const { t } = useTranslation();
   return (
     <section>
-	<div className="bg-yellow-300 text-white py-20 align-center">
+	<div className="bg-primary-200 text-black py-20 align-center">
 		<div className="container mx-auto flex flex-col md:flex-row items-center my-12 md:my-24">
 			<div className="flex flex-col lg:w-1/3 justify-center items-center lg:items-start text-center lg:text-left p-8 w-full">
 			<h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">{t('home.title')}</h1>
@@ -31,7 +31,7 @@ export default function HeaderHero(){
 					<div
 						className='m-auto'
 					>
-						<img className="lg:inline-block hidden xl:block max-w-md" src={holdingHands} alt="Hello"/>
+						<img className="lg:inline-block hidden xl:block max-w-lg" src={holdingHands} alt="Hello"/>
 					</div>
 				</div>
 			</div>

@@ -31,5 +31,8 @@
   "list.view-all": "Ver Todos",
   "list.title": "Post",
   "list.author": "Autor",
-  "list.date": "Fecha"
+  "list.date": "Fecha",
+
+  "about.association.title": "Nuestra Asociación",
+  "about.association.subtitle": "Crece en Libertad es una Organizacion No Gubernamental Francesa con vocación internacional y sin fines de lucro.  La asociación no está afiliada a ningún movimiento político ni creencia religiosa. Financiamos nuestras acciones gracias al apoyo y la generosidad de nuestros donantes. Esta independencia nos permite actuar con total libertad para llevar a cabo los proyectos con los que podemos acompañar a las niñeces y adolescentes"
 }
